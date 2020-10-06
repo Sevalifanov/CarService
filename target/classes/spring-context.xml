@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean name="carDao" class="com.spring.carService.DAO.impl.CarDaoImpl">
+    </bean>
+    <bean name="mechanicDao" class="com.spring.carService.DAO.impl.MechanicDaoImpl">
+</bean>
+    <bean id="garageService" class="com.spring.carService.Service.GarageServiceImpl" autowire="constructor">
+        <constructor-arg index="0" ref="carDao"/>
+        <constructor-arg index="1" ref="mechanicDao"/>
+    </bean>
+
+
+</beans>
