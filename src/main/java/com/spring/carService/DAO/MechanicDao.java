@@ -7,5 +7,4 @@ public interface MechanicDao {
      void saveMechanic(Mechanic mechanic);
      void deleteMechanic(Mechanic mechanic);
      Mechanic getMechanicById(Long id);
-     void addCarToMechanic(Mechanic mechanic, Car car);
 }

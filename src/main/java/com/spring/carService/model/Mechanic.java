@@ -6,13 +6,13 @@ public class Mechanic {
     private Long id;
     private String firstName;
     private String lastName;
-    private Collection<Car> cars;
 
-    public Mechanic(Long id, String firstName, String lastName, Collection<Car> cars) {
+
+    public Mechanic(Long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.cars = cars;
+
     }
 
     public Mechanic() {
@@ -23,9 +23,7 @@ public class Mechanic {
         return "Mechanic{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", cars=" + cars +
-                '}';
+                ", lastName='" + lastName;
     }
 
     public Long getId() {
@@ -52,11 +50,5 @@ public class Mechanic {
         this.lastName = lastName;
     }
 
-    public Collection<Car> getCars() {
-        return cars;
-    }
 
-    public void setCars(Collection<Car> cars) {
-        this.cars = cars;
-    }
 }

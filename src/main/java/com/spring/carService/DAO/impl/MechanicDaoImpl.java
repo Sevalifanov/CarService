@@ -3,10 +3,11 @@ package com.spring.carService.DAO.impl;
 import com.spring.carService.DAO.MechanicDao;
 import com.spring.carService.model.Car;
 import com.spring.carService.model.Mechanic;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Repository
 public class MechanicDaoImpl implements MechanicDao {
     List<Mechanic> mechanics = new ArrayList<>();
 
@@ -29,11 +30,5 @@ public class MechanicDaoImpl implements MechanicDao {
         return null;
     }
 
-    public void addCarToMechanic(Mechanic mechanic, Car car) {
-        for (Mechanic m : mechanics) {
-            if (m.equals(mechanic)) {
-                mechanic.getCars().add(car);
-            }
-        }
-    }
+
 }
