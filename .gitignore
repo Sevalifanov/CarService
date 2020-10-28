@@ -1,5 +1,5 @@
-.idea/
-target/
+/.idea/
+/target/
 carService.iml
 .idea/workspace.xml
 carService.iml

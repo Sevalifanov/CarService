@@ -3,6 +3,9 @@ package com.spring.carService.model;
 import java.util.Date;
 
 public class Order {
+    /**
+     * Date - дата приемки, Car - машина, Mechanic -механик, Price -цена за услугу
+     */
     private Date publicationDate;
     private Car car;
     private Mechanic mechanic;

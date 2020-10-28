@@ -1,26 +1,22 @@
-package com.spring.carService.model;
+package com.spring.carService.dto;
 
-/**
- * машина - имеет вин(по другому- айди), бренд , имя модели
- */
-public class Car {
+public class CarDto {
     private Long id;
     private String brand;
     private String modelName;
 
-
-    public Car(Long id, String brand, String modelName) {
+    public CarDto(Long id, String brand, String modelName) {
         this.id = id;
         this.brand = brand;
         this.modelName = modelName;
     }
 
-    public Car() {
+    public CarDto() {
     }
 
     @Override
     public String toString() {
-        return "Car{" +
+        return "CarDto{" +
                 "id=" + id +
                 ", brand='" + brand + '\'' +
                 ", modelName='" + modelName + '\'' +

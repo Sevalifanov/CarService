@@ -1,29 +1,26 @@
-package com.spring.carService.model;
+package com.spring.carService.dto;
 
-/**
- * механик - айди, имя, фамилия
- */
-public class Mechanic {
+public class MechanicDto {
     private Long id;
     private String firstName;
     private String lastName;
 
-
-    public Mechanic(Long id, String firstName, String lastName) {
+    public MechanicDto(Long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public Mechanic() {
+    public MechanicDto() {
     }
 
     @Override
     public String toString() {
-        return "Mechanic{" +
+        return "MechanicDto{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName;
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 
     public Long getId() {
@@ -49,6 +46,4 @@ public class Mechanic {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
 }
