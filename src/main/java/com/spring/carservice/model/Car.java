@@ -1,4 +1,4 @@
-package com.spring.carService.model;
+package com.spring.carservice.model;
 
 /**
  * машина - имеет вин(по другому- айди), бренд , имя модели

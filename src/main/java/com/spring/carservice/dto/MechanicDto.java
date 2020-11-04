@@ -1,4 +1,4 @@
-package com.spring.carService.dto;
+package com.spring.carservice.dto;
 
 public class MechanicDto {
     private Long id;

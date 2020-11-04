@@ -1,11 +1,14 @@
-package com.spring.carService.service;
+package com.spring.carservice.service.Impl;
 
-import com.spring.carService.dao.CarDao;
-import com.spring.carService.dao.MechanicDao;
-import com.spring.carService.dao.OrderDao;
-import com.spring.carService.dto.CarDto;
-import com.spring.carService.dto.OrderDto;
-import com.spring.carService.model.Order;
+import com.spring.carservice.dao.MechanicDao;
+import com.spring.carservice.dao.OrderDao;
+import com.spring.carservice.dto.CarDto;
+import com.spring.carservice.dto.OrderDto;
+import com.spring.carservice.model.Order;
+import com.spring.carservice.service.OrderService;
+import com.spring.carservice.validator.CarDtoValidator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -14,26 +17,32 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Service
-public class OrderService {
-    private CarService carService;
-    private MechanicService mechanicService;
+public class OrderServiceImpl implements OrderService {
+    private static final Logger log = LogManager.getLogger(OrderServiceImpl.class.getName());
+
+    private CarServiceImpl carService;
+    private MechanicServiceImpl mechanicService;
     private OrderDao orderDao;
-    private CarDao carDao;
     private MechanicDao mechanicDao;
+    private CarDtoValidator carDtoValidator;
+    private AsyncProcessService asyncProcessService;
 
     @Autowired
-    public OrderService(CarService carService, MechanicService mechanicService, OrderDao orderDao, CarDao carDao, MechanicDao mechanicDao) {
+    public OrderServiceImpl(CarServiceImpl carService, MechanicServiceImpl mechanicService, OrderDao orderDao, MechanicDao mechanicDao, CarDtoValidator carDtoValidator, AsyncProcessService asyncProcessService) {
         this.carService = carService;
         this.mechanicService = mechanicService;
         this.orderDao = orderDao;
-        this.carDao = carDao;
         this.mechanicDao = mechanicDao;
+        this.carDtoValidator = carDtoValidator;
+        this.asyncProcessService = asyncProcessService;
     }
 
+
     @Value("${garage.diagnostics.price}")
-    private Long price;
+    private Integer price;
 
     /**
      * Получаем новую машину в наш сервис на диагностику
@@ -42,12 +51,19 @@ public class OrderService {
      * @return Возвращаем заказ-наряд
      */
     public OrderDto add(CarDto carDto) {
-        carService.add(carService.fromDto(carDto));
+        carDtoValidator.validate(carDto);
+        if(carService.getById(carDto.getId())==null){
+            throw new RuntimeException("Car is not added to service. Firstly use /addCar ");
+        }
+        if(findOrderDtoByCarId(carDto.getId())!=null){
+            throw new RuntimeException("Car is already in service, you should add another car please");
+        }
+        asyncProcessService.postOperation();
         Order order = orderDao.saveOrder(new Order(
                 Date.valueOf(LocalDate.now()),
                 carService.fromDto(carDto),
-                mechanicDao.getMechanicById(1L),
-                price
+                mechanicService.fromDto(mechanicService.getFreeMechanic()),
+                Long.valueOf(new Random().nextInt(price))
         ));
         return toDto(order);
     }
@@ -65,7 +81,9 @@ public class OrderService {
                 return orderDto;
             }
         }
+
         return null;
+
     }
 
     /**
@@ -73,6 +91,8 @@ public class OrderService {
      *
      * @return
      */
+
+
     public List<OrderDto> getOrders() {
         List<Order> orders = orderDao.getOrders();
         List<OrderDto> orderDtos = new ArrayList<>();
@@ -89,6 +109,9 @@ public class OrderService {
     }
 
     public boolean deleteOrderByCarId(Long id) {
+        if(findOrderDtoByCarId(id)==null){
+            throw new RuntimeException("Car with this id is absent, please enter another car ID please");
+        }
         for (Order order : orderDao.getOrders()) {
             if (order.getCar().getId().equals(id)) {
                 return orderDao.deleteOrder(order);

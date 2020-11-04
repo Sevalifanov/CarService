@@ -1,7 +1,6 @@
-package com.spring.carService.dao;
+package com.spring.carservice.dao;
 
-import com.spring.carService.model.Car;
-import com.spring.carService.model.Order;
+import com.spring.carservice.model.Order;
 
 import java.util.List;
 

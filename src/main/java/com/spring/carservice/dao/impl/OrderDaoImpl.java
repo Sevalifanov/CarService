@@ -1,8 +1,7 @@
-package com.spring.carService.dao.impl;
+package com.spring.carservice.dao.impl;
 
-import com.spring.carService.dao.OrderDao;
-import com.spring.carService.model.Car;
-import com.spring.carService.model.Order;
+import com.spring.carservice.dao.OrderDao;
+import com.spring.carservice.model.Order;
 import org.springframework.stereotype.Repository;
 
 

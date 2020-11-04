@@ -1,4 +1,4 @@
-package com.spring.carService.dto;
+package com.spring.carservice.dto;
 
 import java.util.Date;
 

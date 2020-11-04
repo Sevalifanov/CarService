@@ -1,24 +1,27 @@
-package com.spring.carService.service;
+package com.spring.carservice.service.Impl;
 
-import com.spring.carService.dao.CarDao;
-import com.spring.carService.dto.CarDto;
-import com.spring.carService.model.Car;
+import com.spring.carservice.dao.CarDao;
+import com.spring.carservice.dto.CarDto;
+import com.spring.carservice.dto.MechanicDto;
+import com.spring.carservice.model.Car;
+import com.spring.carservice.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 @Service
-public class CarService {
+public class CarServiceImpl implements CarService {
 
     private CarDao carDao;
 
 
     @Autowired
-    public CarService(CarDao carDao) {
+    public CarServiceImpl(CarDao carDao) {
         this.carDao = carDao;
+
     }
 
-    public CarService() {
+    public CarServiceImpl() {
     }
 
     public Car fromDto(CarDto carDto) {
@@ -51,6 +54,7 @@ public class CarService {
     public void delete(Car car) {
         carDao.removeCar(car);
     }
+
 
 
 }

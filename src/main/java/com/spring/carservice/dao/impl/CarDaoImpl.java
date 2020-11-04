@@ -1,7 +1,7 @@
-package com.spring.carService.dao.impl;
+package com.spring.carservice.dao.impl;
 
-import com.spring.carService.dao.CarDao;
-import com.spring.carService.model.Car;
+import com.spring.carservice.dao.CarDao;
+import com.spring.carservice.model.Car;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class CarDaoImpl implements CarDao {
 
     public Car getCarById(Long id) {
         for (Car car : cars) {
-            if (car.getId() == id) {
+            if (car.getId().equals(id)) {
                 return car;
             }
         }

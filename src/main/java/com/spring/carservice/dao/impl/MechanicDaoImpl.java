@@ -1,7 +1,7 @@
-package com.spring.carService.dao.impl;
+package com.spring.carservice.dao.impl;
 
-import com.spring.carService.dao.MechanicDao;
-import com.spring.carService.model.Mechanic;
+import com.spring.carservice.dao.MechanicDao;
+import com.spring.carservice.model.Mechanic;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -32,5 +32,7 @@ public class MechanicDaoImpl implements MechanicDao {
         return null;
     }
 
-
+    public List<Mechanic> getMechanics() {
+        return mechanics;
+    }
 }

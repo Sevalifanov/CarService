@@ -1,4 +1,4 @@
-package com.spring.carService.model;
+package com.spring.carservice.model;
 
 import java.util.Date;
 
