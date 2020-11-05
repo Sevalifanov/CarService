@@ -1,5 +1,7 @@
 package com.spring.carservice.model;
 
+import java.util.Objects;
+
 /**
  * механик - айди, имя, фамилия
  */
@@ -50,5 +52,18 @@ public class Mechanic {
         this.lastName = lastName;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Mechanic)) return false;
+        Mechanic mechanic = (Mechanic) o;
+        return Objects.equals(getId(), mechanic.getId()) &&
+                Objects.equals(getFirstName(), mechanic.getFirstName()) &&
+                Objects.equals(getLastName(), mechanic.getLastName());
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getFirstName(), getLastName());
+    }
 }

@@ -51,8 +51,8 @@ public class CarServiceImpl implements CarService {
     }
 
 
-    public void delete(Car car) {
-        carDao.removeCar(car);
+    public boolean delete(Car car) {
+        return carDao.removeCar(car);
     }
 
 

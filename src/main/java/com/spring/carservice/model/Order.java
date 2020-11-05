@@ -1,6 +1,7 @@
 package com.spring.carservice.model;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Order {
     /**
@@ -59,5 +60,21 @@ public class Order {
 
     public void setPrice(Long price) {
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return Objects.equals(getPublicationDate(), order.getPublicationDate()) &&
+                Objects.equals(getCar(), order.getCar()) &&
+                Objects.equals(getMechanic(), order.getMechanic()) &&
+                Objects.equals(getPrice(), order.getPrice());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPublicationDate(), getCar(), getMechanic(), getPrice());
     }
 }

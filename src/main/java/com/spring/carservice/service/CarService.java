@@ -8,5 +8,5 @@ public interface CarService {
    CarDto toDto(Car car);
    Car add(Car car);
    Car getById(Long Id);
-   void delete(Car car);
+   boolean delete(Car car);
 }

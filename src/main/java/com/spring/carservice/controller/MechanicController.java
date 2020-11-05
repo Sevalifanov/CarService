@@ -41,8 +41,8 @@ public class MechanicController {
      * @param mechanicDto
      */
     @DeleteMapping(value = "/deleteMechanic")
-    public void getMechanicById(@RequestBody MechanicDto mechanicDto) {
-        mechanicService.delete(mechanicService.fromDto(mechanicDto));
+    public boolean deleteMechanic(@RequestBody MechanicDto mechanicDto) {
+        return mechanicService.delete(mechanicService.fromDto(mechanicDto));
     }
 
 

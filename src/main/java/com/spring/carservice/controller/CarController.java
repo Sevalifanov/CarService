@@ -41,8 +41,8 @@ public class CarController {
      * @param carDto
      */
     @DeleteMapping(value = "/deleteCar")
-    public void getCarById(@RequestBody CarDto carDto) {
-        carService.delete(carService.fromDto(carDto));
+    public boolean deleteCar(@RequestBody CarDto carDto) {
+      return carService.delete(carService.fromDto(carDto));
     }
 
 

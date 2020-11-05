@@ -59,8 +59,8 @@ public class MechanicServiceImpl implements MechanicService {
 
     }
 
-    public void delete(Mechanic mechanic) {
-        mechanicDao.deleteMechanic(mechanic);
+    public boolean delete(Mechanic mechanic) {
+      return   mechanicDao.deleteMechanic(mechanic);
     }
 
     public MechanicDto getFreeMechanic(){

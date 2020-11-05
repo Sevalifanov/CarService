@@ -1,5 +1,7 @@
 package com.spring.carservice.model;
 
+import java.util.Objects;
+
 /**
  * машина - имеет вин(по другому- айди), бренд , имя модели
  */
@@ -49,5 +51,20 @@ public class Car {
 
     public void setModelName(String modelName) {
         this.modelName = modelName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Car)) return false;
+        Car car = (Car) o;
+        return Objects.equals(getId(), car.getId()) &&
+                Objects.equals(getBrand(), car.getBrand()) &&
+                Objects.equals(getModelName(), car.getModelName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getBrand(), getModelName());
     }
 }

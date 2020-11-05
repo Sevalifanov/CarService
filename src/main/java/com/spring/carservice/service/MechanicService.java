@@ -12,5 +12,5 @@ public interface MechanicService {
 
     Mechanic getById(Long Id);
 
-    void delete(Mechanic mechanic);
+    boolean delete(Mechanic mechanic);
 }

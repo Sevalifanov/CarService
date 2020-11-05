@@ -11,7 +11,7 @@ import java.util.List;
 public class CarDaoImpl implements CarDao {
 
     List<Car> cars = new ArrayList<Car>();
-
+    @Override
     public Car addCar(Car car) {
         if (!cars.contains(car)) {
             cars.add(car);
@@ -20,11 +20,14 @@ public class CarDaoImpl implements CarDao {
         return null;
 
     }
-
-    public void removeCar(Car car) {
-        cars.remove(car);
+    @Override
+    public boolean removeCar(Car carR) {
+        for(Car car: cars){
+            if(car.equals(carR)){return cars.remove(car);}
+        }
+        return false;
     }
-
+    @Override
     public Car getCarById(Long id) {
         for (Car car : cars) {
             if (car.getId().equals(id)) {

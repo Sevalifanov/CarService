@@ -11,6 +11,7 @@ import java.util.List;
 public class MechanicDaoImpl implements MechanicDao {
     List<Mechanic> mechanics = new ArrayList<>();
 
+    @Override
     public Mechanic saveMechanic(Mechanic mechanic) {
         if (!mechanics.contains(mechanic)) {
             mechanics.add(mechanic);
@@ -19,10 +20,17 @@ public class MechanicDaoImpl implements MechanicDao {
         return null;
     }
 
-    public void deleteMechanic(Mechanic mechanic) {
-        mechanics.remove(mechanic);
+    @Override
+    public boolean deleteMechanic(Mechanic mechanicR) {
+        for (Mechanic mechanic : mechanics) {
+            if (mechanic.equals(mechanicR)) {
+                return mechanics.remove(mechanic);
+            }
+        }
+        return false;
     }
 
+    @Override
     public Mechanic getMechanicById(Long id) {
         for (Mechanic mechanic : mechanics) {
             if (mechanic.getId() == id) {
@@ -32,6 +40,7 @@ public class MechanicDaoImpl implements MechanicDao {
         return null;
     }
 
+    @Override
     public List<Mechanic> getMechanics() {
         return mechanics;
     }
