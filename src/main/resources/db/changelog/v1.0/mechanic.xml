@@ -1,0 +1,43 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Lifanov_Vsevolod">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="mechanic"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="mechanic"
+                     remarks="Таблица зарегистрированных механиков">
+            <column name="id" type="uuid"
+                    remarks="Идентификатор записи механиков">
+                <constraints primaryKey="true"
+                             primaryKeyName="mechanic_pk"
+                             nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)" remarks="Имя механика">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)" remarks="Фамилия механика"/>
+
+        </createTable>
+        <comment>Задача по созданию Механиков</comment>
+    </changeSet>
+
+    <changeSet id="2" author="Lifanov_Vsevolod">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="mechanic" indexName="mechanic_lastname_idx"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="mechanic" indexName="mechanic_lastname_idx">
+            <column name="last_name"/>
+        </createIndex>
+        <comment>Индекс для поиска механика по фамилии</comment>
+    </changeSet>
+
+</databaseChangeLog>
