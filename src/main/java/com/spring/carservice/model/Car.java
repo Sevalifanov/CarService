@@ -17,6 +17,10 @@ public class Car {
         this.modelName = modelName;
     }
 
+    public Car(Long id) {
+        this.id = id;
+    }
+
     public Car() {
     }
 

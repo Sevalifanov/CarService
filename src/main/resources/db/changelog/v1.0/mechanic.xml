@@ -13,7 +13,8 @@
 
         <createTable tableName="mechanic"
                      remarks="Таблица зарегистрированных механиков">
-            <column name="id" type="uuid"
+
+            <column name="id" type="int"
                     remarks="Идентификатор записи механиков">
                 <constraints primaryKey="true"
                              primaryKeyName="mechanic_pk"

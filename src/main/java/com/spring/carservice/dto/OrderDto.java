@@ -21,7 +21,7 @@ public class OrderDto {
     @Override
     public String toString() {
         return "OrderDto{" +
-                "publicationDate=" + publicationDate +
+                "publicationDate=" + publicationDate.getTime() +
                 ", carDto=" + carDto +
                 ", mechanicDto=" + mechanicDto +
                 ", price=" + price +

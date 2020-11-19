@@ -13,7 +13,7 @@
 
         <createTable tableName="car"
                      remarks="Таблица зарегистрированных автомобилей">
-            <column name="id" type="uuid"
+            <column name="id" type="int"
                     remarks="Идентификатор записи">
                 <constraints primaryKey="true"
                              primaryKeyName="car_pk"

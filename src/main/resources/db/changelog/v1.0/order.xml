@@ -4,7 +4,7 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
 
-    <changeSet id="1" author="Lifanov" dbms="postgres">
+    <changeSet id="1" author="Lifanov_Vsevolod">
         <preConditions onFail="MARK_RAN">
             <not>
                 <tableExists tableName="order"/>
@@ -13,19 +13,20 @@
 
         <createTable tableName="order"
                      remarks="Таблица зарегистрированных заказов ">
-            <column name="publication_date" type="uuid"
+
+            <column name="publication_date" type="bigint"
                     remarks="время создания задаза в милисекундах">
                 <constraints primaryKey="true"
                              primaryKeyName="order_pk"
                              nullable="false"/>
             </column>
-            <column name="car_id" type="uuid" remarks="Идентификатор автомобиля">
+            <column name="car_id" type="int" remarks="Идентификатор автомобиля">
                 <constraints foreignKeyName="car_fk"
                              referencedTableName="car"
                              referencedColumnNames="id"
                              nullable="false"/>
             </column>
-            <column name="mechanic_id" type="uuid" remarks="Айди механика">
+            <column name="mechanic_id" type="int" remarks="Айди механика">
                 <constraints foreignKeyName="mechanic_fk"
                              referencedTableName="mechanic"
                              referencedColumnNames="id"
@@ -36,7 +37,7 @@
             </column>
 
         </createTable>
-        <comment>Задача по созданию пользователя</comment>
+        <comment>Задача по созданию </comment>
     </changeSet>
 
 </databaseChangeLog>

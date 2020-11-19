@@ -20,6 +20,10 @@ public class Mechanic {
     public Mechanic() {
     }
 
+    public Mechanic(Long id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Mechanic{" +

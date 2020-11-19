@@ -26,7 +26,6 @@ public class OrderServiceImpl implements OrderService {
     private CarServiceImpl carService;
     private MechanicServiceImpl mechanicService;
     private OrderDao orderDao;
-    private MechanicDao mechanicDao;
     private CarDtoValidator carDtoValidator;
     private AsyncProcessService asyncProcessService;
 
@@ -35,7 +34,6 @@ public class OrderServiceImpl implements OrderService {
         this.carService = carService;
         this.mechanicService = mechanicService;
         this.orderDao = orderDao;
-        this.mechanicDao = mechanicDao;
         this.carDtoValidator = carDtoValidator;
         this.asyncProcessService = asyncProcessService;
     }

@@ -10,6 +10,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.List;
 import java.util.Random;
 
 @Service
@@ -22,20 +23,6 @@ public class MechanicServiceImpl implements MechanicService {
         this.mechanicDao = mechanicDao;
     }
 
-    @Value("${garage.stuff.mechanic.fisrtname}")
-    private String firstName;
-    @Value("${garage.stuff.mechanic.lastname}")
-    private String lastName;
-    @Value("${garage.stuff.mechanic.id}")
-    private Long id;
-
-    /**
-     * Добавим нашего механика
-     */
-    @PostConstruct
-    private void postConstruct() {
-        add(new Mechanic(id, firstName, lastName));
-    }
 
     public Mechanic add(Mechanic mechanic) {
         return mechanicDao.saveMechanic(mechanic);
@@ -60,19 +47,20 @@ public class MechanicServiceImpl implements MechanicService {
     }
 
     public boolean delete(Mechanic mechanic) {
-      return   mechanicDao.deleteMechanic(mechanic);
+        return mechanicDao.deleteMechanic(mechanic);
     }
 
-    public MechanicDto getFreeMechanic(){
-        int size = mechanicDao.getMechanics().size();
+    public MechanicDto getFreeMechanic() {
+        List<Mechanic> mechanics = mechanicDao.getMechanics();
         Mechanic mechanic;
-        if(size>0){
-            mechanic =  mechanicDao.getMechanicById(
-               Long.valueOf (new Random().nextInt(size)));}
-        else {throw new RuntimeException("There is no mechanic in our service. Please add mechanic by /addMechanic");};
+        if (mechanics.size() > 0) {
+            mechanic = mechanics.get(new Random().nextInt(mechanics.size()));
+        } else {
+            throw new RuntimeException("There is no mechanic in our service. Please add mechanic by /addMechanic");
+        }
+        ;
         return toDto(mechanic);
     }
-
 
 
 }
