@@ -179,7 +179,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/getMechanicById?id=2",
+					"raw": "localhost:8080/getMechanicById?id=3",
 					"host": [
 						"localhost"
 					],
@@ -190,7 +190,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "2"
+							"value": "3"
 						}
 					]
 				}
@@ -204,7 +204,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\": 2 ,\r\n\"firstName\": \"IVANOVICH\",\r\n\"lastName\": \"IVANOV\"}",
+					"raw": "{\"id\": 3 ,\r\n\"firstName\": \"IVANOVICH\",\r\n\"lastName\": \"IVANOV\"}",
 					"options": {
 						"raw": {
 							"language": "json"
