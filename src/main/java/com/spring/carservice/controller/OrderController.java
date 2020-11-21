@@ -2,7 +2,7 @@ package com.spring.carservice.controller;
 
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.OrderDto;
-import com.spring.carservice.service.Impl.OrderServiceImpl;
+import com.spring.carservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class OrderController {
 
-    private OrderServiceImpl orderServiceImpl;
+    private OrderService orderService;
 
     @Autowired
-    public OrderController(OrderServiceImpl orderServiceImpl) {
-        this.orderServiceImpl = orderServiceImpl;
+    public OrderController(OrderService orderServiceImpl) {
+        this.orderService = orderServiceImpl;
     }
     /**
      * Этот метод добавляет новую машину
@@ -26,7 +26,7 @@ public class OrderController {
      */
     @PostMapping(value = "/addOrder")
     public OrderDto addOrder(@RequestBody CarDto carDto) {
-        return orderServiceImpl.add(carDto);
+        return orderService.add(carDto);
     }
 
     /**
@@ -38,7 +38,7 @@ public class OrderController {
     @GetMapping(value = "/getOrderByCarId")
     public OrderDto getOrderByCarId(@RequestParam Long id) {
 
-        return orderServiceImpl.findOrderDtoByCarId(id);
+        return orderService.findOrderDtoByCarId(id);
     }
 
     /**
@@ -50,6 +50,6 @@ public class OrderController {
 
     @DeleteMapping(value = "/deleteOrderByCarId")
     public Boolean deleteOrderByCarId(@RequestParam Long id) {
-        return orderServiceImpl.deleteOrderByCarId(id);
+        return orderService.deleteOrderByCarId(id);
     }
 }

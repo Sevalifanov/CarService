@@ -13,4 +13,6 @@ public interface MechanicService {
     Mechanic getById(Long Id);
 
     boolean delete(Mechanic mechanic);
+
+    MechanicDto getFreeMechanic();
 }

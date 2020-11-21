@@ -27,12 +27,12 @@ public class OrderDaoImpl implements OrderDao {
         this.mechanicDao = mechanicDao;
         this.jdbcTemplate = jdbcTemplate;
         this.simpleJdbcInsert = simpleJdbcInsert;
-        simpleJdbcInsert.withTableName("order");
+        simpleJdbcInsert.withTableName("orders");
     }
 
     @Override
     public List<Order> getOrders() {
-        List<Order> orders =  jdbcTemplate.query("SELECT * FROM order", new OrderRowMapper());
+        List<Order> orders =  jdbcTemplate.query("SELECT * FROM orders", new OrderRowMapper());
         ArrayList<Order> orderArrayList = new ArrayList<>();
         orders.forEach(order -> orderArrayList.add(new Order(order.getPublicationDate(),
                 carDao.getCarById(order.getCar().getId()),
@@ -58,7 +58,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public Order getByDate(Long milis) {
-        Order order = jdbcTemplate.queryForObject("SELECT * FROM order WHERE publication_date = ?", new Object[]{milis}, new OrderRowMapper());
+        Order order = jdbcTemplate.queryForObject("SELECT * FROM orders WHERE publication_date = ?", new Object[]{milis}, new OrderRowMapper());
         return new Order(order.getPublicationDate(),
                 carDao.getCarById(order.getCar().getId()),
                 mechanicDao.getMechanicById(order.getMechanic().getId()),
@@ -77,7 +77,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public int deleteFromOrder(Long milis) {
-        return jdbcTemplate.update("DELETE FROM order WHERE publication_date = ?", new Object[]{milis});
+        return jdbcTemplate.update("DELETE FROM orders WHERE publication_date = ?", new Object[]{milis});
     }
 
 

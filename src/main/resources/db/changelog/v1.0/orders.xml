@@ -7,11 +7,11 @@
     <changeSet id="1" author="Lifanov_Vsevolod">
         <preConditions onFail="MARK_RAN">
             <not>
-                <tableExists tableName="order"/>
+                <tableExists tableName="orders"/>
             </not>
         </preConditions>
 
-        <createTable tableName="order"
+        <createTable tableName="orders"
                      remarks="Таблица зарегистрированных заказов ">
 
             <column name="publication_date" type="bigint"

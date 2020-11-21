@@ -7,6 +7,7 @@ import com.spring.carservice.model.Car;
 import com.spring.carservice.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service
@@ -24,6 +25,7 @@ public class CarServiceImpl implements CarService {
     public CarServiceImpl() {
     }
 
+    @Override
     public Car fromDto(CarDto carDto) {
         return new Car(
                 carDto.getId(),
@@ -32,6 +34,7 @@ public class CarServiceImpl implements CarService {
         );
     }
 
+    @Override
     public CarDto toDto(Car car) {
         return new CarDto(
                 car.getId(),
@@ -40,21 +43,24 @@ public class CarServiceImpl implements CarService {
         );
     }
 
-
+    @Override
+    @Transactional
     public Car add(Car car) {
         carDao.addCar(car);
         return car;
     }
 
+    @Override
+    @Transactional
     public Car getById(Long Id) {
         return carDao.getCarById(Id);
     }
 
-
+    @Override
+    @Transactional
     public boolean delete(Car car) {
         return carDao.removeCar(car);
     }
-
 
 
 }

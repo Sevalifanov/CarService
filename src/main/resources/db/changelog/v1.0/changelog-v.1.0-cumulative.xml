@@ -6,5 +6,5 @@
 
     <include file="car.xml" relativeToChangelogFile="true"/>
     <include file="mechanic.xml" relativeToChangelogFile="true"/>
-    <include file="order.xml" relativeToChangelogFile="true"/>
+    <include file="orders.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
