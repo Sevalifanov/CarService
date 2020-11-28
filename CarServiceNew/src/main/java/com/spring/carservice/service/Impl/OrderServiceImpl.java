@@ -42,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
     private Integer price;
 
     /**
-     * Получаем новую машину в наш сервис на диагностику
+     * Добавляем  машину в наш сервис на диагностику
      *
      * @param carDto
      * @return Возвращаем заказ-наряд
