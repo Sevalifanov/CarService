@@ -20,7 +20,7 @@ public class CarController {
     }
 
     /**
-     * добавляет машину
+     * добавляет машину в список машин приезжающих на сервис
      *
      * @param carDto
      * @return
