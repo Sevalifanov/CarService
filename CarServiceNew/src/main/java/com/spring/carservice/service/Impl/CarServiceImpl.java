@@ -4,7 +4,6 @@ import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.model.Car;
 import com.spring.carservice.service.CarService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -17,7 +16,6 @@ public class CarServiceImpl implements CarService {
         this.carDao = carDao;
 
     }
-
 
     @Override
     public Car fromDto(CarDto carDto) {
