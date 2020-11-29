@@ -23,7 +23,7 @@ public class MechanicDtoValidator {
      */
     public void validate(MechanicDto mechanicDto) {
         if (mechanicDto.getId() == null || mechanicDto.getFirstName() == null || mechanicDto.getLastName() == null || mechanicDto.getLastName().equals("") || mechanicDto.getFirstName().equals("")) {
-            logger.error("some field(s) is(are) incorrect");
+            logger.error("try to enter incorrect info");
             throw new IllegalArgumentException(exceptionMechanicValidateMessage);
         }
 
