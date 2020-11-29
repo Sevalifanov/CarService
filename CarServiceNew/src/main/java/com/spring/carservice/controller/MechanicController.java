@@ -3,6 +3,7 @@ package com.spring.carservice.controller;
 import com.spring.carservice.dto.MechanicDto;
 import com.spring.carservice.model.Mechanic;
 import com.spring.carservice.service.MechanicService;
+import com.spring.carservice.validator.MechanicDtoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/mechanic")
 public class MechanicController {
     private MechanicService mechanicService;
+    private MechanicDtoValidator mechanicDtoValidator;
 
-    public MechanicController(MechanicService mechanicService) {
+    public MechanicController(MechanicService mechanicService, MechanicDtoValidator mechanicDtoValidator) {
         this.mechanicService = mechanicService;
+        this.mechanicDtoValidator = mechanicDtoValidator;
     }
 
     /**
@@ -23,6 +26,7 @@ public class MechanicController {
      */
     @PostMapping
     public MechanicDto addMechanic(@RequestBody MechanicDto mechanicDto) {
+        mechanicDtoValidator.validate(mechanicDto);
         Mechanic mechanic = mechanicService.add(mechanicService.fromDto(mechanicDto));
         return mechanicService.toDto(mechanic);
     }

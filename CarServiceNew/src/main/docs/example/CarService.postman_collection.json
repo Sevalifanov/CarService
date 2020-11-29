@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\" : 1,\n\"brand\" : \"alfa romeo\",\n\"modelName\" : \"156\"}",
+					"raw": "{\"id\" : 2,\n\"brand\" : \"alfa romeo\",\n\"modelName\" : \"156\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -51,7 +51,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\": 1 ,\r\n\"firstName\": \"IVANOVICH\",\r\n\"lastName\": \"IVANOV\"}",
+					"raw": "{\"id\": 3 ,\r\n\"firstName\": \"IVANOVICH\",\r\n\"lastName\": \"IVANOV\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,13 +59,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/addMechanic",
+					"raw": "localhost:8080/mechanic",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"addMechanic"
+						"mechanic"
 					]
 				}
 			},
@@ -78,7 +78,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\" : 1,\r\n\"brand\" : \"AlfaRomeo\",\r\n\"modelName\" : \"156\"}",
+					"raw": "{\"id\" : 2,\r\n\"brand\" : \"AlfaRomeo\",\r\n\"modelName\" : \"156\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -86,13 +86,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/addOrder",
+					"raw": "localhost:8080/order",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"addOrder"
+						"order"
 					]
 				}
 			},
@@ -104,14 +104,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/order/1",
+					"raw": "localhost:8080/order/2",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"order",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -123,14 +123,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/car/1",
+					"raw": "localhost:8080/car/2",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"car",
-						"1"
+						"2"
 					]
 				}
 			},
@@ -142,19 +142,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/mechanic?id=3",
+					"raw": "localhost:8080/mechanic/3",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"mechanic"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "3"
-						}
+						"mechanic",
+						"3"
 					]
 				}
 			},
@@ -191,7 +186,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\" : 1,\r\n\"brand\" : \"AlfaRomeo\",\r\n\"modelName\" : \"156\"}",
+					"raw": "{\"id\" : 1,\r\n\"brand\" : \"alfa romeo\",\r\n\"modelName\" : \"156\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -199,13 +194,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/deleteCar",
+					"raw": "localhost:8080/car",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"deleteCar"
+						"car"
 					]
 				}
 			},
@@ -226,13 +221,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/deleteMechanic",
+					"raw": "localhost:8080/mechanic",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"deleteMechanic"
+						"mechanic"
 					]
 				}
 			},
