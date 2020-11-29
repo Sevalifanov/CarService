@@ -24,7 +24,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\" : 1,\n\"brand\" : \"AlfaRomeo\",\n\"modelName\" : \"156\"}",
+					"raw": "{\"id\" : 1,\n\"brand\" : \"alfa romeo\",\n\"modelName\" : \"156\"}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -32,13 +32,13 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/addCar",
+					"raw": "localhost:8080/car",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"addCar"
+						"car"
 					]
 				}
 			},
@@ -99,24 +99,19 @@
 			"response": []
 		},
 		{
-			"name": "deleteOrderByCarId",
+			"name": "getOrderByCarId",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/deleteOrderByCarId?id=1",
+					"raw": "localhost:8080/order/1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"deleteOrderByCarId"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
+						"order",
+						"1"
 					]
 				}
 			},
@@ -128,18 +123,61 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/getCarById?id=1",
+					"raw": "localhost:8080/car/1",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"getCarById"
+						"car",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMechanicById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/mechanic?id=3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"mechanic"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteOrderByCarId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/order?id=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"order"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
 						}
 					]
 				}
@@ -174,30 +212,6 @@
 			"response": []
 		},
 		{
-			"name": "getMechanicById",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/mechanic?id=3",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"mechanic"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "3"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "deleteMechanic",
 			"request": {
 				"method": "DELETE",
@@ -219,78 +233,6 @@
 					"port": "8080",
 					"path": [
 						"deleteMechanic"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "deleteOrderByCarId",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/deleteOrderByCarId?id=1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"deleteOrderByCarId"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "localhost:8080/getOrderByCarId?id=1",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/getOrderByCarId?id=1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"getOrderByCarId"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "getOrderByCarId",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/getOrderByCarId?id=1",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"getOrderByCarId"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
 					]
 				}
 			},
