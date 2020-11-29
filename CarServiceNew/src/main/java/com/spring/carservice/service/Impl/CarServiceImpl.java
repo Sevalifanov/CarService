@@ -3,6 +3,7 @@ package com.spring.carservice.service.Impl;
 import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.model.Car;
+import com.spring.carservice.service.AsyncProcessService;
 import com.spring.carservice.service.CarService;
 import org.springframework.stereotype.Service;
 
@@ -10,11 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CarServiceImpl implements CarService {
 
+    private AsyncProcessService asyncProcessService;
     private CarDao carDao;
 
-    public CarServiceImpl(CarDao carDao) {
+    public CarServiceImpl(AsyncProcessService asyncProcessService, CarDao carDao) {
+        this.asyncProcessService = asyncProcessService;
         this.carDao = carDao;
-
     }
 
     @Override
@@ -37,6 +39,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public Car add(Car car) {
+        asyncProcessService.postOperation();
         return carDao.addCar(car);
 
     }

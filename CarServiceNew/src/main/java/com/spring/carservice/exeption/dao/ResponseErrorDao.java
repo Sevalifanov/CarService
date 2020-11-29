@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface ResponseErrorDao {
 
-    public void add(ResponseError responseError);
+    void add(ResponseError responseError);
 
-    public List<ResponseError> getErrors();
+    List<ResponseError> getErrors();
 
 }

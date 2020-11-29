@@ -4,6 +4,7 @@ import com.spring.carservice.dao.OrderDao;
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.OrderDto;
 import com.spring.carservice.model.Order;
+import com.spring.carservice.service.AsyncProcessService;
 import com.spring.carservice.service.CarService;
 import com.spring.carservice.service.MechanicService;
 import com.spring.carservice.service.OrderService;
@@ -23,11 +24,13 @@ import java.util.Random;
 public class OrderServiceImpl implements OrderService {
     private static final Logger log = LogManager.getLogger(OrderServiceImpl.class.getName());
 
+    private AsyncProcessService asyncProcessService;
     private CarService carService;
     private MechanicService mechanicService;
     private OrderDao orderDao;
 
-    public OrderServiceImpl(CarService carService, MechanicService mechanicService, OrderDao orderDao) {
+    public OrderServiceImpl(AsyncProcessService asyncProcessService, CarService carService, MechanicService mechanicService, OrderDao orderDao) {
+        this.asyncProcessService = asyncProcessService;
         this.carService = carService;
         this.mechanicService = mechanicService;
         this.orderDao = orderDao;
@@ -38,6 +41,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto add(CarDto carDto) {
+        asyncProcessService.postOperation();
         if (carService.getById(carDto.getId()) == null) {
             throw new RuntimeException("Car is not added to service. Firstly use /addCar ");
         }
