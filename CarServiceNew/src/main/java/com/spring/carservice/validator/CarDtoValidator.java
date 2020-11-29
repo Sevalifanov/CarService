@@ -16,6 +16,11 @@ public class CarDtoValidator {
     @Value("${exception.car.validate}")
     private String exceptionCarValidateMessage;
 
+    /**
+     * Проверяем на валидность carDto который прилетает нам от внешней системы
+     * Метод выбросит экспешн, если у carDto будут некорректные поля.
+     * @param carDto
+     */
     public void validate(CarDto carDto) {
         if (carDto.getId() == null || carDto.getModelName() == null || carDto.getBrand() == null || carDto.getModelName().equals("") || carDto.getBrand().equals("")) {
             logger.error("some field(s) is(are) incorrect");

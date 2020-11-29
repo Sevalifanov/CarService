@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequestMapping(value = "/order")
 public class OrderController {
 
     private OrderService orderService;
@@ -22,7 +23,7 @@ public class OrderController {
      * @param carDto
      * @return OrderDto -заказ наряд возвращаем клиенту.
      */
-    @PostMapping(value = "/order")
+    @PostMapping
     public OrderDto addOrder(@RequestBody CarDto carDto) {
         return orderService.add(carDto);
     }
@@ -33,8 +34,8 @@ public class OrderController {
      * @param id - VIN машины
      * @return - Вернеться заказ наряд
      */
-    @GetMapping(value = "/order")
-    public OrderDto getOrderByCarId(@RequestParam Long id) {
+    @GetMapping(value = "/{id}")
+    public OrderDto getOrderByCarId(@PathVariable("id") Long id) {
 
         return orderService.findOrderDtoByCarId(id);
     }
@@ -45,7 +46,7 @@ public class OrderController {
      * @param id -vin
      * @return стринга со статусом
      */
-    @DeleteMapping(value = "/order")
+    @DeleteMapping
     public void deleteOrderByCarId(@RequestParam Long id) {
         orderService.deleteOrderByCarId(id);
     }
