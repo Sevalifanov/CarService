@@ -52,6 +52,20 @@ public class GarageExceptionHandler {
         responseErrorDao.add(error);
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+    @ExceptionHandler(NullPointerException.class)
+    public ResponseEntity<ResponseError> nullPointerException(Exception exception) {
+        log.debug(exception.getLocalizedMessage(), exception);
+        ResponseError error = new ResponseError(
+                UUID.randomUUID(),
+                System.currentTimeMillis(),
+                "NullPointerException",
+                "object does not exist or cannot be created ",
+                "mySystem"
+        );
+        log.debug(exception.getStackTrace(), exception);
+        responseErrorDao.add(error);
+        return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
 
 

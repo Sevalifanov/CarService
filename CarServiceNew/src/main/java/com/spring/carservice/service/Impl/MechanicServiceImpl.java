@@ -3,8 +3,8 @@ package com.spring.carservice.service.Impl;
 import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dto.MechanicDto;
 import com.spring.carservice.model.Mechanic;
+import com.spring.carservice.service.AsyncProcessService;
 import com.spring.carservice.service.MechanicService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 
@@ -15,13 +15,16 @@ import java.util.Random;
 @PropertySource("classpath:application.properties")
 public class MechanicServiceImpl implements MechanicService {
     private MechanicDao mechanicDao;
+    private AsyncProcessService asyncProcessService;
 
-    public MechanicServiceImpl(MechanicDao mechanicDao) {
+    public MechanicServiceImpl(MechanicDao mechanicDao, AsyncProcessService asyncProcessService) {
         this.mechanicDao = mechanicDao;
+        this.asyncProcessService = asyncProcessService;
     }
 
     @Override
     public Mechanic add(Mechanic mechanic) {
+        asyncProcessService.postOperation();
         return mechanicDao.addMechanic(mechanic);
 
     }
