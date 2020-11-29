@@ -3,13 +3,21 @@ package com.spring.carservice.model;
 import java.util.Objects;
 
 /**
- * механик - id айди, firstName - имя, lastName - фамилия
+ * mechanic -специалист по диагностике и ремонту автомобилей.
  */
 public class Mechanic {
+    /**
+     * id -Внутренний идентификационный номер сотрудника, работающего в сервисе
+     */
     private Long id;
+    /**
+     * firstName -Имя потрудника
+     */
     private String firstName;
+    /**
+     * lastName -Фамилия сотрудника
+     */
     private String lastName;
-
 
     public Mechanic(Long id, String firstName, String lastName) {
         this.id = id;

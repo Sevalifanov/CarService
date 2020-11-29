@@ -12,8 +12,6 @@ public class CarController {
     private CarService carService;
     private CarDtoValidator carDtoValidator;
 
-
-    @Autowired
     public CarController(CarService carService, CarDtoValidator carDtoValidator) {
         this.carService = carService;
         this.carDtoValidator = carDtoValidator;
@@ -25,7 +23,7 @@ public class CarController {
      * @param carDto
      * @return
      */
-    @PostMapping(value = "/addCar")
+    @PostMapping(value = "/car")
     public CarDto addCar(@RequestBody CarDto carDto) {
         carDtoValidator.validate(carDto);
         Car car = carService.add(carService.fromDto(carDto));
@@ -38,7 +36,7 @@ public class CarController {
      * @param id
      * @return
      */
-    @GetMapping(value = "/getCarById")
+    @GetMapping(value = "/car")
     public CarDto getCarById(@RequestParam Long id) {
         return carService.toDto(carService.getById(id));
     }
@@ -48,9 +46,9 @@ public class CarController {
      *
      * @param carDto
      */
-    @DeleteMapping(value = "/deleteCar")
-    public boolean deleteCar(@RequestBody CarDto carDto) {
-        return carService.delete(carService.fromDto(carDto));
+    @DeleteMapping(value = "/car")
+    public void deleteCar(@RequestBody CarDto carDto) {
+        carService.delete(carService.fromDto(carDto));
     }
 
 

@@ -1,8 +1,23 @@
 package com.spring.carservice.dto;
 
+/**
+ * Data Transfer Object (DTO) — один из шаблонов проектирования, используется для передачи данных
+ * между подсистемами приложения. Data Transfer Object
+ * CarDto -воплощение этого шаблона для модели Car
+ */
 public class CarDto {
+    /**
+     * id  -автомобиля - уникальный номер для любого т.с. на планете
+     */
     private Long id;
+    /**
+     * brand -марка автомобля например: Ford, Toyota, etc..
+     */
     private String brand;
+    /**
+     * model -модель автомобиля. Каждая марка автомобилей имеет несколько моделей предствленных на рынке.
+     * например : Ford F-150, Ford Focus, Ford Explorer, etc.
+     */
     private String modelName;
 
     public CarDto(Long id, String brand, String modelName) {
