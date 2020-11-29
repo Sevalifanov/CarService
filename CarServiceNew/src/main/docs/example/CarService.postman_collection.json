@@ -179,13 +179,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/getMechanicById?id=3",
+					"raw": "localhost:8080/mechanic?id=3",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
-						"getMechanicById"
+						"mechanic"
 					],
 					"query": [
 						{

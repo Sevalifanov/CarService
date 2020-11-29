@@ -2,10 +2,27 @@ package com.spring.carservice.dto;
 
 import java.util.Date;
 
+/**
+ * Data Transfer Object (DTO) — один из шаблонов проектирования, используется для передачи данных
+ * между подсистемами приложения. Data Transfer Object
+ * OrderDto -воплощение этого шаблона для модели Order
+ */
 public class OrderDto {
+    /**
+     * publicationDate -дата создания заказа на обслуживание автомобиля.
+     */
     private Date publicationDate;
+    /**
+     * carDto -автомобиль поступивший на обслуживание.
+     */
     private CarDto carDto;
+    /**
+     * mechanicDto -механик осблуживающий Т.С.
+     */
     private MechanicDto mechanicDto;
+    /**
+     * price -оцененный сервисом труд механика, выраженный в денежном эквиваленте.
+     */
     private Long price;
 
     public OrderDto(Date publicationDate, CarDto carDto, MechanicDto mechanicDto, Long price) {

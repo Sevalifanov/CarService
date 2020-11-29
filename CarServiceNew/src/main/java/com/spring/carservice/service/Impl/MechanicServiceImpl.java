@@ -16,7 +16,6 @@ import java.util.Random;
 public class MechanicServiceImpl implements MechanicService {
     private MechanicDao mechanicDao;
 
-    @Autowired
     public MechanicServiceImpl(MechanicDao mechanicDao) {
         this.mechanicDao = mechanicDao;
     }
@@ -52,11 +51,6 @@ public class MechanicServiceImpl implements MechanicService {
         return mechanicDao.deleteMechanic(mechanic);
     }
 
-    /**
-     * Метод ищет свободного механика - реализация рандом
-     * если механиков нет- вылетает exception
-     * @return механик для заказа
-     */
     @Override
     public MechanicDto getFreeMechanic() {
         List<Mechanic> mechanics = mechanicDao.getMechanics();

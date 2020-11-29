@@ -3,13 +3,26 @@ package com.spring.carservice.model;
 import java.util.Date;
 import java.util.Objects;
 
+/**
+ * Order -заказ на исполнение. Как только зарегестрированный в сервисе автомобиль поступает на диагностику,
+ * ему присваевается механик и цена диагностики
+ */
 public class Order {
     /**
-     * Date - дата приемки, Car - машина, Mechanic -механик, Price -цена за услугу
+     * publicationDate -дата создания заказа на обслуживание автомобиля.
      */
     private Date publicationDate;
+    /**
+     * car -автомобиль поступивший на обслуживание.
+     */
     private Car car;
+    /**
+     * mechanic -механик осблуживающий Т.С.
+     */
     private Mechanic mechanic;
+    /**
+     * price -оцененный сервисом труд механика, выраженный в денежном эквиваленте.
+     */
     private Long price;
 
     public Order(Date publicationDate, Car car, Mechanic mechanic, Long price) {
@@ -18,7 +31,11 @@ public class Order {
         this.mechanic = mechanic;
         this.price = price;
     }
-    public Order(){};
+
+    public Order() {
+    }
+
+    ;
 
     @Override
     public String toString() {

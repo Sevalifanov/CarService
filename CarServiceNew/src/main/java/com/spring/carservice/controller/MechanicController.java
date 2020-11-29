@@ -10,17 +10,17 @@ import org.springframework.web.bind.annotation.*;
 public class MechanicController {
     private MechanicService mechanicService;
 
-    @Autowired
     public MechanicController(MechanicService mechanicService) {
         this.mechanicService = mechanicService;
     }
 
     /**
      * Добавляем автомобили
+     *
      * @param mechanicDto
      * @return
      */
-    @PostMapping(value = "/addMechanic")
+    @PostMapping(value = "/mechanic")
     public MechanicDto addMechanic(@RequestBody MechanicDto mechanicDto) {
         Mechanic mechanic = mechanicService.add(mechanicService.fromDto(mechanicDto));
         return mechanicService.toDto(mechanic);
@@ -28,21 +28,23 @@ public class MechanicController {
 
     /**
      * Возвращает механика по айди
+     *
      * @param id
      * @return
      */
-    @GetMapping(value = "/getMechanicById")
+    @GetMapping(value = "/mechanic")
     public MechanicDto getMechanicById(@RequestParam Long id) {
         return mechanicService.toDto(mechanicService.getById(id));
     }
 
     /**
      * Удаляет механика
+     *
      * @param mechanicDto
      */
-    @DeleteMapping(value = "/deleteMechanic")
-    public boolean deleteMechanic(@RequestBody MechanicDto mechanicDto) {
-        return mechanicService.delete(mechanicService.fromDto(mechanicDto));
+    @DeleteMapping(value = "/mechanic")
+    public void deleteMechanic(@RequestBody MechanicDto mechanicDto) {
+        mechanicService.delete(mechanicService.fromDto(mechanicDto));
     }
 
 

@@ -12,19 +12,17 @@ public class OrderController {
 
     private OrderService orderService;
 
-    @Autowired
     public OrderController(OrderService orderServiceImpl) {
         this.orderService = orderServiceImpl;
     }
+
     /**
      * Этот метод добавляет новую машину
      *
-     * @param carDto "{"id":укажи VIN,
-     *               "brand":"укажи бренд",
-     *               "modelName":"укажи модель"}"
+     * @param carDto
      * @return OrderDto -заказ наряд возвращаем клиенту.
      */
-    @PostMapping(value = "/addOrder")
+    @PostMapping(value = "/order")
     public OrderDto addOrder(@RequestBody CarDto carDto) {
         return orderService.add(carDto);
     }
@@ -35,7 +33,7 @@ public class OrderController {
      * @param id - VIN машины
      * @return - Вернеться заказ наряд
      */
-    @GetMapping(value = "/getOrderByCarId")
+    @GetMapping(value = "/order")
     public OrderDto getOrderByCarId(@RequestParam Long id) {
 
         return orderService.findOrderDtoByCarId(id);
@@ -47,9 +45,8 @@ public class OrderController {
      * @param id -vin
      * @return стринга со статусом
      */
-
-    @DeleteMapping(value = "/deleteOrderByCarId")
-    public Boolean deleteOrderByCarId(@RequestParam Long id) {
-        return orderService.deleteOrderByCarId(id);
+    @DeleteMapping(value = "/order")
+    public void deleteOrderByCarId(@RequestParam Long id) {
+        orderService.deleteOrderByCarId(id);
     }
 }
