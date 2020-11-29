@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(value = "/mechanic")
 public class MechanicController {
     private MechanicService mechanicService;
 
@@ -20,7 +21,7 @@ public class MechanicController {
      * @param mechanicDto
      * @return
      */
-    @PostMapping(value = "/mechanic")
+    @PostMapping
     public MechanicDto addMechanic(@RequestBody MechanicDto mechanicDto) {
         Mechanic mechanic = mechanicService.add(mechanicService.fromDto(mechanicDto));
         return mechanicService.toDto(mechanic);
@@ -32,8 +33,8 @@ public class MechanicController {
      * @param id
      * @return
      */
-    @GetMapping(value = "/mechanic")
-    public MechanicDto getMechanicById(@RequestParam Long id) {
+    @GetMapping(value = "/{id}")
+    public MechanicDto getMechanicById(@PathVariable("id") Long id) {
         return mechanicService.toDto(mechanicService.getById(id));
     }
 
@@ -42,7 +43,7 @@ public class MechanicController {
      *
      * @param mechanicDto
      */
-    @DeleteMapping(value = "/mechanic")
+    @DeleteMapping
     public void deleteMechanic(@RequestBody MechanicDto mechanicDto) {
         mechanicService.delete(mechanicService.fromDto(mechanicDto));
     }
