@@ -1,0 +1,43 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Lifanov_Vsevolod">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <tableExists tableName="car"/>
+            </not>
+        </preConditions>
+
+        <createTable tableName="car"
+                     remarks="Таблица зарегистрированных автомобилей">
+            <column name="id" type="int"
+                    remarks="Идентификатор записи">
+                <constraints primaryKey="true"
+                             primaryKeyName="car_pk"
+                             nullable="false"/>
+            </column>
+            <column name="brand" type="varchar(255)" remarks="Бренд изготовителя автомобиля">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model_name" type="varchar(255)" remarks="Наименование модели авто"/>
+
+        </createTable>
+        <comment>Задача по созданию Автомобиля</comment>
+    </changeSet>
+
+    <changeSet id="2" author="Lifanov_Vsevolod">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <indexExists tableName="car" indexName="car_model_idx"/>
+            </not>
+        </preConditions>
+        <createIndex tableName="car" indexName="car_model_idx">
+            <column name="model_name"/>
+        </createIndex>
+        <comment>Индекс для поиска по модели авто</comment>
+    </changeSet>
+
+</databaseChangeLog>
