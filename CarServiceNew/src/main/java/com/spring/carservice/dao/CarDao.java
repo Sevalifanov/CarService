@@ -3,11 +3,11 @@ package com.spring.carservice.dao;
 import com.spring.carservice.model.Car;
 
 import java.util.List;
-
+//todo save
 public interface CarDao {
-    Car addCar(Car car);
+    Car save(Car car);
 
-    boolean removeCar(Car car);
+    boolean remove(Car car);
 
     Car getById(Long id);
 

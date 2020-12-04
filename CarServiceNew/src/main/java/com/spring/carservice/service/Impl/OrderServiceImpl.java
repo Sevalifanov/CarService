@@ -4,16 +4,15 @@ import com.spring.carservice.dao.OrderDao;
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.OrderDto;
 import com.spring.carservice.model.Order;
-import com.spring.carservice.service.AsyncProcessService;
 import com.spring.carservice.service.CarService;
 import com.spring.carservice.service.MechanicService;
 import com.spring.carservice.service.OrderService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -43,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
     public OrderDto add(CarDto carDto) {
         asyncProcessService.postOperation();
         if (carService.getById(carDto.getId()) == null) {
-            throw new RuntimeException("Car is not added to service. Firstly use /addCar ");
+            throw new RuntimeException("Car is not added to service. Firstly use /save ");
         }
         if (findOrderDtoByCarId(carDto.getId()) != null) {
             throw new RuntimeException("Car is already in service, you should add another car please");
@@ -52,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
                 Date.valueOf(LocalDate.now()),
                 carService.fromDto(carDto),
                 mechanicService.fromDto(mechanicService.getFreeMechanic()),
-                Long.valueOf(new Random().nextInt(price))
+                BigDecimal.valueOf(new Random().nextInt(price))
         ));
         return toDto(order);
     }

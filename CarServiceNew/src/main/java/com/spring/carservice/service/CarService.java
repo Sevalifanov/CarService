@@ -7,21 +7,6 @@ import com.spring.carservice.model.Car;
  * CarService - класс для работы с уровнем бизнес логикой сущностей Car и CarDto.
  */
 public interface CarService {
-    /**
-     * Метод преобразовывает объект  из CarDto в стандартный вид Car
-     *
-     * @param carDto - Объект типа CarDto
-     * @return Car -Объект типа Car
-     */
-    Car fromDto(CarDto carDto);
-
-    /**
-     * Данный метод преобразовывает объект типа Car в объект типа CarDto
-     *
-     * @param car - Объект типа car
-     * @return CarDto - Объект типа CarDto
-     */
-    CarDto toDto(Car car);
 
     /**
      * Метод добавляющий объект автомобиль в наш persistence layer
@@ -29,7 +14,7 @@ public interface CarService {
      * @param car
      * @return -if success -return car, if fail -return null
      */
-    Car add(Car car);
+    CarDto add(CarDto car);
 
     /**
      * Метод возвращающий объект автомобиль из persistence layer
@@ -37,13 +22,21 @@ public interface CarService {
      * @param Id - идентификационный номер автомобиля
      * @return -if success -return car, if fail -return null
      */
-    Car getById(Long Id);
+    CarDto getById(Long Id);
 
     /**
      * Метод Удаляющий объект автомобиль из persistence layer
      *
-     * @param car - авто для удаления
+     * @param id - авто для удаления
      * @return -if success -return true, if fail -return false
      */
-    boolean delete(Car car);
+    boolean delete(Long id);
+    /**
+     * Метод изменяющий объект автомобиль в нашем persistence layer
+     *
+     * @param carDto
+     * @return -if success -return car, if fail -return null
+     */
+    CarDto update(CarDto carDto);
+
 }

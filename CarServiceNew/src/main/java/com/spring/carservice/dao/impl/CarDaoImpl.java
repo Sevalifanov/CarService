@@ -11,7 +11,7 @@ public class CarDaoImpl implements CarDao {
     List<Car> cars = new ArrayList<>();
 
     @Override
-    public Car addCar(Car car) {
+    public Car save(Car car) {
         for (Car carR : cars) {
             if (carR.equals(car)) {
                 return null;
@@ -22,7 +22,7 @@ public class CarDaoImpl implements CarDao {
     }
 
     @Override
-    public boolean removeCar(Car car) {
+    public boolean remove(Car car) {
         return cars.remove(car);
     }
 

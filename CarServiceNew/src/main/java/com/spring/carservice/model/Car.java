@@ -35,15 +35,6 @@ public class Car {
     public Car() {
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", modelName='" + modelName + '\'' +
-                '}';
-    }
-
     public Long getId() {
         return id;
     }
@@ -66,6 +57,15 @@ public class Car {
 
     public void setModelName(String modelName) {
         this.modelName = modelName;
+    }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", modelName='" + modelName + '\'' +
+                '}';
     }
 
     @Override

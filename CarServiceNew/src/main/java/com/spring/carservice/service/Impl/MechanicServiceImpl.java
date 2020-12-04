@@ -3,7 +3,6 @@ package com.spring.carservice.service.Impl;
 import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dto.MechanicDto;
 import com.spring.carservice.model.Mechanic;
-import com.spring.carservice.service.AsyncProcessService;
 import com.spring.carservice.service.MechanicService;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;

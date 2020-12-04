@@ -1,5 +1,7 @@
 package com.spring.carservice.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,7 +13,7 @@ public class Order {
     /**
      * publicationDate -дата создания заказа на обслуживание автомобиля.
      */
-    private Date publicationDate;
+    private LocalDateTime publicationDate;
     /**
      * car -автомобиль поступивший на обслуживание.
      */
@@ -23,9 +25,10 @@ public class Order {
     /**
      * price -оцененный сервисом труд механика, выраженный в денежном эквиваленте.
      */
-    private Long price;
 
-    public Order(Date publicationDate, Car car, Mechanic mechanic, Long price) {
+    private BigDecimal price;
+
+    public Order(LocalDateTime publicationDate, Car car, Mechanic mechanic, BigDecimal price) {
         this.publicationDate = publicationDate;
         this.car = car;
         this.mechanic = mechanic;
@@ -47,11 +50,11 @@ public class Order {
                 '}';
     }
 
-    public Date getPublicationDate() {
+    public LocalDateTime getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(LocalDateTime publicationDate) {
         this.publicationDate = publicationDate;
     }
 
@@ -71,11 +74,11 @@ public class Order {
         this.mechanic = mechanic;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
