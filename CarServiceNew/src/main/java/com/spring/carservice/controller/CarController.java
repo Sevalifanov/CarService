@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/car")
+@RequestMapping(value = "/api/v1/car")
 public class CarController {
     private CarService carService;
     private CarDtoValidator carDtoValidator;
@@ -45,11 +45,11 @@ public class CarController {
     /**
      * Удаляет машину
      *
-     * @param carDto
+     * @param id автомобиля
      */
-    @DeleteMapping
-    public void deleteCar(@RequestBody CarDto carDto) {
-        carService.delete(carService.fromDto(carDto));
+    @DeleteMapping(value = "/{id}")
+    public void deleteCar(@PathVariable("id") Long id) {
+        carService.delete(carService.getById(id));
     }
 
 

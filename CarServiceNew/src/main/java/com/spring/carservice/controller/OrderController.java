@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping(value = "/order")
+@RequestMapping(value = "/api/v1/order")
 public class OrderController {
 
     private OrderService orderService;
@@ -36,18 +36,17 @@ public class OrderController {
      */
     @GetMapping(value = "/{id}")
     public OrderDto getOrderByCarId(@PathVariable("id") Long id) {
-
         return orderService.findOrderDtoByCarId(id);
     }
 
     /**
      * Метод удаляет заказ наряд по вину
      *
-     * @param id -vin
+     * @param id -vin автомобиля
      * @return стринга со статусом
      */
-    @DeleteMapping
-    public void deleteOrderByCarId(@RequestParam Long id) {
+    @DeleteMapping(value = "/{id}")
+    public void deleteOrderByCarId(@PathVariable("id") Long id) {
         orderService.deleteOrderByCarId(id);
     }
 }
