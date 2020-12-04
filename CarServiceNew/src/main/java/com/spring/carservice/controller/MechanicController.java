@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(value = "/mechanic")
+@RequestMapping(value = "/api/v1/mechanic")
 public class MechanicController {
     private MechanicService mechanicService;
 
@@ -41,11 +41,11 @@ public class MechanicController {
     /**
      * Удаляет механика
      *
-     * @param mechanicDto
+     * @param id
      */
-    @DeleteMapping
-    public void deleteMechanic(@RequestBody MechanicDto mechanicDto) {
-        mechanicService.delete(mechanicService.fromDto(mechanicDto));
+    @DeleteMapping(value = "/{id}")
+    public void deleteMechanic(@PathVariable("id") Long id) {
+        mechanicService.delete(mechanicService.getById(id));
     }
 
 
