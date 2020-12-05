@@ -56,6 +56,12 @@ public class CarController {
         carService.delete(id);
     }
 
+    /**
+     * Обновляем информацию по айди автомобиля
+     * @param carDto
+     * @param id
+     * @return
+     */
     @PutMapping(value = "/{id}")
     public CarDto updateCar(@RequestBody CarDto carDto, @PathVariable("id") Long id) {
         if(!carDto.getId().equals(id)){

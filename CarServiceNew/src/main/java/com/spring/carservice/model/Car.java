@@ -21,18 +21,17 @@ public class Car {
      */
     private String modelName;
 
-
-    public Car(Long id, String brand, String modelName) {
-        this.id = id;
-        this.brand = brand;
-        this.modelName = modelName;
+    public Car() {
     }
 
     public Car(Long id) {
         this.id = id;
     }
 
-    public Car() {
+    public Car(Long id, String brand, String modelName) {
+        this.id = id;
+        this.brand = brand;
+        this.modelName = modelName;
     }
 
     public Long getId() {

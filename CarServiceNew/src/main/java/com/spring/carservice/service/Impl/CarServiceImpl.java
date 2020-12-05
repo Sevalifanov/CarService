@@ -33,13 +33,14 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public CarDto update(CarDto carDto){
+    public CarDto update(CarDto carDto) {
         carDao.remove(carDao.getById(carDto.getId()));
         carDao.save(fromDto(carDto));
         return carDto;
-    };
+    }
 
-    private Car fromDto(CarDto carDto) {
+    @Override
+    public Car fromDto(CarDto carDto) {
         return new Car(
                 carDto.getId(),
                 carDto.getBrand(),
@@ -47,7 +48,8 @@ public class CarServiceImpl implements CarService {
         );
     }
 
-    private CarDto toDto(Car car) {
+    @Override
+    public CarDto toDto(Car car) {
         return new CarDto(
                 car.getId(),
                 car.getBrand(),

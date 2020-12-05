@@ -11,7 +11,7 @@ public class MechanicDaoImpl implements MechanicDao {
     List<Mechanic> mechanics = new ArrayList<>();
 
     @Override
-    public Mechanic addMechanic(Mechanic mechanic) {
+    public Mechanic save(Mechanic mechanic) {
         for (Mechanic mechanicR : mechanics) {
             if (mechanicR.equals(mechanic)) {
                 return null;
@@ -22,12 +22,12 @@ public class MechanicDaoImpl implements MechanicDao {
     }
 
     @Override
-    public boolean deleteMechanic(Mechanic mechanic) {
+    public boolean remove(Mechanic mechanic) {
         return mechanics.remove(mechanic);
     }
 
     @Override
-    public List<Mechanic> getMechanics() {
+    public List<Mechanic> getList() {
         return mechanics;
     }
 

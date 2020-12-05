@@ -39,4 +39,8 @@ public interface CarService {
      */
     CarDto update(CarDto carDto);
 
+    CarDto toDto(Car car);
+
+    Car fromDto(CarDto carDto);
+
 }

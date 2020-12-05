@@ -11,6 +11,10 @@ import java.util.Objects;
  */
 public class Order {
     /**
+     * Id - айдентикационный номер заказа
+     */
+    private Long id;
+    /**
      * publicationDate -дата создания заказа на обслуживание автомобиля.
      */
     private LocalDateTime publicationDate;
@@ -28,26 +32,20 @@ public class Order {
 
     private BigDecimal price;
 
-    public Order(LocalDateTime publicationDate, Car car, Mechanic mechanic, BigDecimal price) {
+    public Order(Long id, LocalDateTime publicationDate, Car car, Mechanic mechanic, BigDecimal price) {
+        this.id = id;
         this.publicationDate = publicationDate;
         this.car = car;
         this.mechanic = mechanic;
         this.price = price;
     }
 
-    public Order() {
+    public Long getId() {
+        return id;
     }
 
-    ;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "publicationDate=" + publicationDate +
-                ", car=" + car +
-                ", mechanic=" + mechanic +
-                ", price=" + price +
-                '}';
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public LocalDateTime getPublicationDate() {
@@ -83,11 +81,23 @@ public class Order {
     }
 
     @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", publicationDate=" + publicationDate +
+                ", car=" + car +
+                ", mechanic=" + mechanic +
+                ", price=" + price +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Order)) return false;
         Order order = (Order) o;
-        return Objects.equals(getPublicationDate(), order.getPublicationDate()) &&
+        return Objects.equals(getId(), order.getId()) &&
+                Objects.equals(getPublicationDate(), order.getPublicationDate()) &&
                 Objects.equals(getCar(), order.getCar()) &&
                 Objects.equals(getMechanic(), order.getMechanic()) &&
                 Objects.equals(getPrice(), order.getPrice());
@@ -95,6 +105,6 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPublicationDate(), getCar(), getMechanic(), getPrice());
+        return Objects.hash(getId(), getPublicationDate(), getCar(), getMechanic(), getPrice());
     }
 }

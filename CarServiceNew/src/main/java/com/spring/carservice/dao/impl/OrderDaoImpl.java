@@ -34,27 +34,16 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public boolean deleteOrder(Order order) {
-        return orders.remove(order);
-    }
-
-    @Override
-    public Order getByDate(Long milis) {
-        for (Order order : orders) {
-            if (order.getPublicationDate().equals(new Date(milis))) return order;
+    public Order getById(Long id) {
+        for(Order order: orders){
+            if(order.getId().equals(id))return order;
         }
         return null;
     }
 
-
     @Override
-    public boolean deleteFromOrderByDate(Long milis) {
-        for (Order order : orders) {
-            if (order.getPublicationDate().equals(new Date(milis))) {
-                return orders.remove(order);
-            }
-        }
-        return false;
+    public boolean remove(Order order) {
+        return orders.remove(order);
     }
 
 

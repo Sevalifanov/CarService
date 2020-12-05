@@ -24,7 +24,15 @@ public interface OrderService {
      * @param id - id автомобиля(VIN)
      * @return возвращает заказ наряд, если такой вин есть, если нет-null
      */
-    OrderDto findOrderDtoByCarId(Long id);
+    OrderDto getOrderDtoByCarId(Long id);
+
+    /**
+     * Метод вовзращает заказ наряды по id
+     *
+     * @param id - id автомобиля(VIN)
+     * @return возвращает заказ наряд, если такой вин есть, если нет-null
+     */
+    OrderDto getById(Long id);
 
     /**
      * Возвращаем список заказ-нарядов
@@ -34,28 +42,20 @@ public interface OrderService {
     List<OrderDto> getOrders();
 
     /**
-     * Когда диагностика автомобиля заканчивается, сервис отдает машину владельцу, заказ закрывается.
-     * если такой автомобиль отсутствует сейчас в списке авто на обслуживании, то вылетит эксепшн
+     * обновляет информацию о заказе
      *
-     * @param id- Айди автомобиля
-     * @return если заказ с таким айди авто есть то вылетит true
+     * @param orderDto- обновляем инфу о заказ наряде
+     * @return Возвращаем заказ-наряд
      */
-    boolean deleteOrderByCarId(Long id);
+    OrderDto update(OrderDto orderDto);
 
     /**
-     * Данный метод преобразовывает объект типа Order в объект типа OrderDto
+     * Метод Удаляющий заказ наряд из persistence layer
      *
-     * @param order - Объект типа Order
-     * @return OrderDto - Объект типа OrderDto
+     * @param id - id заказа для удаления
+     * @return -if success -return true, if fail -return false
      */
-    OrderDto toDto(Order order);
+    boolean delete(Long id);
 
-    /**
-     * Метод преобразовывает объект  из OrderDto в стандартный вид Order
-     *
-     * @param orderDto - Объект типа OrderDto
-     * @return Order -Объект типа Order
-     */
-    Order fromDto(OrderDto orderDto);
 
 }

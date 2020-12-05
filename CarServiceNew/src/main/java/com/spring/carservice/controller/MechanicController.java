@@ -1,11 +1,14 @@
 package com.spring.carservice.controller;
 
+import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.MechanicDto;
 import com.spring.carservice.model.Mechanic;
 import com.spring.carservice.service.MechanicService;
 import com.spring.carservice.validator.MechanicDtoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping(value = "/api/v1/mechanic")
@@ -25,10 +28,10 @@ public class MechanicController {
      * @return
      */
     @PostMapping
-    public MechanicDto addMechanic(@RequestBody MechanicDto mechanicDto) {
+    public ResponseEntity<MechanicDto> addMechanic(@RequestBody MechanicDto mechanicDto, UriComponentsBuilder uriBuilder) {
         mechanicDtoValidator.validate(mechanicDto);
-        Mechanic mechanic = mechanicService.add(mechanicService.fromDto(mechanicDto));
-        return mechanicService.toDto(mechanic);
+        mechanicService.add(mechanicDto);
+        return ResponseEntity.created(uriBuilder.path("/api/v1/mechanic/" + mechanicDto.getId()).buildAndExpand(mechanicDto).toUri()).body(mechanicDto);
     }
 
     /**
@@ -39,7 +42,7 @@ public class MechanicController {
      */
     @GetMapping(value = "/{id}")
     public MechanicDto getMechanicById(@PathVariable("id") Long id) {
-        return mechanicService.toDto(mechanicService.getById(id));
+        return mechanicService.getById(id);
     }
 
     /**
@@ -49,7 +52,24 @@ public class MechanicController {
      */
     @DeleteMapping(value = "/{id}")
     public void deleteMechanic(@PathVariable("id") Long id) {
-        mechanicService.delete(mechanicService.getById(id));
+        mechanicService.delete(id);
+    }
+
+    /**
+     * update mechanics model information
+     *
+     * @param mechanicDto
+     * @param id
+     * @return
+     */
+    @PutMapping(value = "/{id}")
+    public MechanicDto updateCar(@RequestBody MechanicDto mechanicDto, @PathVariable("id") Long id) {
+        if (!mechanicDto.getId().equals(id)) {
+            throw new RuntimeException();
+        }
+        mechanicDtoValidator.validate(mechanicDto);
+        mechanicService.update(mechanicDto);
+        return mechanicDto;
     }
 
 

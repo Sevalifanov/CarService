@@ -4,7 +4,11 @@ import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.OrderDto;
 import com.spring.carservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import java.time.ZoneOffset;
 
 
 @RestController
@@ -24,8 +28,10 @@ public class OrderController {
      * @return OrderDto -заказ наряд возвращаем клиенту.
      */
     @PostMapping
-    public OrderDto addOrder(@RequestBody CarDto carDto) {
-        return orderService.add(carDto);
+    public ResponseEntity<OrderDto> addOrder(@RequestBody CarDto carDto, UriComponentsBuilder uriBuilder) {
+        OrderDto orderDto = orderService.add(carDto);
+        return ResponseEntity.created(uriBuilder.path("/api/v1/order/" + orderDto.getPublicationDate().toEpochSecond(ZoneOffset.UTC))
+                .buildAndExpand(orderDto).toUri()).body(orderDto);
     }
 
     /**
@@ -35,8 +41,8 @@ public class OrderController {
      * @return - Вернеться заказ наряд
      */
     @GetMapping(value = "/{id}")
-    public OrderDto getOrderByCarId(@PathVariable("id") Long id) {
-        return orderService.findOrderDtoByCarId(id);
+    public OrderDto getOrderById(@PathVariable("id") Long id) {
+        return orderService.getById(id);
     }
 
     /**
@@ -46,7 +52,24 @@ public class OrderController {
      * @return стринга со статусом
      */
     @DeleteMapping(value = "/{id}")
-    public void deleteOrderByCarId(@PathVariable("id") Long id) {
-        orderService.deleteOrderByCarId(id);
+    public void deleteOrderId(@PathVariable("id") Long id) {
+        orderService.delete(id);
     }
+
+    /**
+     * Обновлем информацию о заказ наряде
+     *
+     * @param orderDto - изменения заказ наряда
+     * @param id       - id нужного заказа
+     * @return
+     */
+    @PutMapping(value = "/{id}")
+    public OrderDto updateCar(@RequestBody OrderDto orderDto, @PathVariable("id") Long id) {
+        if (!orderDto.getId().equals(id)) {
+            throw new RuntimeException();
+        }
+        orderService.update(orderDto);
+        return orderDto;
+    }
+
 }
