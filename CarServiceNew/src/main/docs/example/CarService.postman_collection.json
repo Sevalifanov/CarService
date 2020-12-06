@@ -1,0 +1,343 @@
+{
+	"info": {
+		"_postman_id": "142a131b-0c94-467f-bbbe-1343e505f65e",
+		"name": "CarService",
+		"description": "Request for CarService Apllication",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "AddCar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"disabled": true
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJub25lIn0. ewogICJpc3MiOiAiU0EiLAogICJleHAiOiAxNjEzMTM2MjUwLjk1MywKICAiZXBrSWQiOiAtMSwKICAidGVyYmFuayI6ICIxIgp9.",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\" : 2,\n\"brand\" : \"alfa romeo\",\n\"modelName\" : \"156\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/car",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"car"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addMechanic",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\": 3 ,\r\n\"firstName\": \"IVANOVICH\",\r\n\"lastName\": \"IVANOV\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/mechanic",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"mechanic"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addOrder",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\" : 2,\r\n\"brand\" : \"AlfaRomeo\",\r\n\"modelName\" : \"156\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/order",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getOrderByCarId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/order/1607166179197",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"order",
+						"1607166179197"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCarById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/car/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"car",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getMechanicById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/mechanic/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"mechanic",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteOrderByCarId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/api/v1/order/1607166179197",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"order",
+						"1607166179197"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCar",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/car/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"car",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteMechanic",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/mechanic/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"mechanic",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CarUpdate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"id\" : 2,\r\n\"brand\" : \"alfa romeo\",\r\n\"modelName\" : \"154\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/car/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"car",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MechanicUpdate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 3,\r\n    \"firstName\": \"IVANOVICH\",\r\n    \"lastName\": \"SIDOROV\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/mechanic/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"mechanic",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "orderUpdate",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1607167674843,\r\n    \"publicationDate\": [\r\n        2020,\r\n        12,\r\n        5,\r\n        14,\r\n        27,\r\n        54,\r\n        843914400\r\n    ],\r\n    \"carDto\": {\r\n        \"id\": 2,\r\n        \"brand\": \"AlfaRomeo\",\r\n        \"modelName\": \"156\"\r\n    },\r\n    \"mechanicDto\": {\r\n        \"id\": 3,\r\n        \"firstName\": \"IVANOVICH\",\r\n        \"lastName\": \"IVANOV\"\r\n    },\r\n    \"price\": 460\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/api/v1/order/1607167674843",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"order",
+						"1607167674843"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
