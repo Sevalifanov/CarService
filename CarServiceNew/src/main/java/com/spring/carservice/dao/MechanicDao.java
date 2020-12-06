@@ -8,7 +8,7 @@ import java.util.List;
 public interface MechanicDao {
     Mechanic save(Mechanic mechanic);
 
-    boolean remove(Mechanic mechanic);
+    void remove(Mechanic mechanic);
 
     List<Mechanic> getList();
 

@@ -2,11 +2,7 @@ package com.spring.carservice.service;
 
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.OrderDto;
-import com.spring.carservice.model.Order;
 
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface OrderService {
@@ -17,14 +13,6 @@ public interface OrderService {
      * @return Возвращаем заказ-наряд
      */
     OrderDto add(CarDto carDto);
-
-    /**
-     * Метод вовзращает заказ наряды по VIN
-     *
-     * @param id - id автомобиля(VIN)
-     * @return возвращает заказ наряд, если такой вин есть, если нет-null
-     */
-    OrderDto getOrderDtoByCarId(Long id);
 
     /**
      * Метод вовзращает заказ наряды по id
@@ -55,7 +43,7 @@ public interface OrderService {
      * @param id - id заказа для удаления
      * @return -if success -return true, if fail -return false
      */
-    boolean delete(Long id);
+    void delete(Long id);
 
 
 }

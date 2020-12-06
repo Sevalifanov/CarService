@@ -40,14 +40,11 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderDto add(CarDto carDto) {
-        asyncProcessService.postOperation();
+//        asyncProcessService.postOperation();
         if (carService.getById(carDto.getId()) == null) {
             throw new RuntimeException("Car is not added to service. Firstly use /save ");
         }
-        if (getOrderDtoByCarId(carDto.getId()) != null) {
-            throw new RuntimeException("Car is already in service, you should add another car please");
-        }
-        Order order = orderDao.addOrder(new Order(
+        Order order = orderDao.save(new Order(
                 System.currentTimeMillis(),
                 LocalDateTime.now(),
                 carService.fromDto(carDto),
@@ -57,15 +54,6 @@ public class OrderServiceImpl implements OrderService {
         return toDto(order);
     }
 
-    @Override
-    public OrderDto getOrderDtoByCarId(Long id) {
-        for (OrderDto orderDto : getOrders()) {
-            if (id.equals(orderDto.getCarDto().getId())) {
-                return orderDto;
-            }
-        }
-        return null;
-    }
 
     @Override
     public OrderDto getById(Long id) {
@@ -74,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> getOrders() {
-        List<Order> orders = orderDao.getOrders();
+        List<Order> orders = orderDao.getList();
         List<OrderDto> orderDtos = new ArrayList<>();
         for (Order order : orders) {
             orderDtos.add(toDto(order));
@@ -83,14 +71,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean delete(Long id) {
-        return orderDao.remove(orderDao.getById(id));
+    public void delete(Long id) {
+        orderDao.remove(orderDao.getById(id));
     }
 
     @Override
     public OrderDto update(OrderDto orderDto) {
         delete(orderDto.getId());
-        orderDao.addOrder(fromDto(orderDto));
+        orderDao.save(fromDto(orderDto));
         return orderDto;
     }
 

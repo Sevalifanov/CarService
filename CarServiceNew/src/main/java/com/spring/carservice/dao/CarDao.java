@@ -7,7 +7,7 @@ import java.util.List;
 public interface CarDao {
     Car save(Car car);
 
-    boolean remove(Car car);
+    void remove(Car car);
 
     Car getById(Long id);
 

@@ -30,7 +30,7 @@ public interface CarService {
      * @param id - авто для удаления
      * @return -if success -return true, if fail -return false
      */
-    boolean delete(Long id);
+    void delete(Long id);
     /**
      * Метод изменяющий объект автомобиль в нашем persistence layer
      *

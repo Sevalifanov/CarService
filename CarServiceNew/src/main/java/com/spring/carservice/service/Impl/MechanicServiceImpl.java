@@ -38,8 +38,8 @@ public class MechanicServiceImpl implements MechanicService {
     }
 
     @Override
-    public boolean delete(Long id) {
-        return mechanicDao.remove(mechanicDao.getById(id));
+    public void delete(Long id) {
+        mechanicDao.remove(mechanicDao.getById(id));
     }
 
     @Override

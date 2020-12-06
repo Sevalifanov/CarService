@@ -27,9 +27,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public boolean delete(Long id) {
+    public void delete(Long id) {
         Car car = carDao.getById(id);
-        return carDao.remove(car);
+        carDao.remove(car);
     }
 
     @Override
