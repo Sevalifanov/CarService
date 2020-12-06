@@ -64,7 +64,7 @@ public class OrderController {
      * @return
      */
     @PutMapping(value = "/{id}")
-    public OrderDto updateCar(@RequestBody OrderDto orderDto, @PathVariable("id") Long id) {
+    public OrderDto updateOrder(@RequestBody OrderDto orderDto, @PathVariable("id") Long id) {
         if (!orderDto.getId().equals(id)) {
             throw new RuntimeException();
         }

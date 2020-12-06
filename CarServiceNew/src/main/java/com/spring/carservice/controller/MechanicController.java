@@ -63,7 +63,7 @@ public class MechanicController {
      * @return
      */
     @PutMapping(value = "/{id}")
-    public MechanicDto updateCar(@RequestBody MechanicDto mechanicDto, @PathVariable("id") Long id) {
+    public MechanicDto updateMechanic(@RequestBody MechanicDto mechanicDto, @PathVariable("id") Long id) {
         if (!mechanicDto.getId().equals(id)) {
             throw new RuntimeException();
         }
