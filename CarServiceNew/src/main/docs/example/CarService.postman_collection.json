@@ -105,12 +105,12 @@
 			"response": []
 		},
 		{
-			"name": "getOrderByCarId",
+			"name": "getOrderById",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/order/1607166179197",
+					"raw": "localhost:8080/api/v1/order/1607167674843",
 					"host": [
 						"localhost"
 					],
@@ -119,7 +119,7 @@
 						"api",
 						"v1",
 						"order",
-						"1607166179197"
+						"1607167674843"
 					]
 				}
 			},
@@ -168,7 +168,7 @@
 			"response": []
 		},
 		{
-			"name": "deleteOrderByCarId",
+			"name": "deleteOrderById",
 			"request": {
 				"method": "DELETE",
 				"header": [],

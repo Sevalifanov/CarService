@@ -1,10 +1,7 @@
 package com.spring.carservice.exeption;
 
-import com.spring.carservice.exeption.dao.ResponseErrorDao;
-import com.spring.carservice.exeption.dao.impl.ResponseErrorDaoImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +15,6 @@ import java.util.UUID;
 public class GarageExceptionHandler {
     private static final Logger log = LogManager.getLogger(GarageExceptionHandler.class.getName());
 
-    private ResponseErrorDao responseErrorDao;
-
-    public GarageExceptionHandler(ResponseErrorDao responseErrorDao) {
-        this.responseErrorDao = responseErrorDao;
-    }
-
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ResponseError> illegalArgumentException(IllegalArgumentException exception) {
         log.debug(exception.getLocalizedMessage(), exception);
@@ -34,7 +25,6 @@ public class GarageExceptionHandler {
                 exception.getMessage(),
                 "validation"
         );
-        responseErrorDao.add(error);
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 
@@ -49,9 +39,9 @@ public class GarageExceptionHandler {
                 "mySystem"
         );
         log.debug(exception.getStackTrace(), exception);
-        responseErrorDao.add(error);
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<ResponseError> nullPointerException(Exception exception) {
         log.debug(exception.getLocalizedMessage(), exception);
@@ -63,7 +53,6 @@ public class GarageExceptionHandler {
                 "mySystem"
         );
         log.debug(exception.getStackTrace(), exception);
-        responseErrorDao.add(error);
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
