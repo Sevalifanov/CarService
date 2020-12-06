@@ -37,7 +37,7 @@ public class OrderController {
     /**
      * Метод вовзращает заказ наряд по вину авто
      *
-     * @param id - VIN машины
+     * @param id - id заказа
      * @return - Вернеться заказ наряд
      */
     @GetMapping(value = "/{id}")

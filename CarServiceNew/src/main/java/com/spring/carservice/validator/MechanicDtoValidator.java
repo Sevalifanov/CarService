@@ -26,8 +26,6 @@ public class MechanicDtoValidator {
             logger.error("try to enter incorrect info");
             throw new IllegalArgumentException(exceptionMechanicValidateMessage);
         }
-
-
     }
 
 }
