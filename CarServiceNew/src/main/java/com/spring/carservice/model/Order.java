@@ -1,5 +1,7 @@
 package com.spring.carservice.model;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,9 +11,13 @@ import java.util.Objects;
  */
 public class Order {
     /**
+     * Id - айдентикационный номер заказа
+     */
+    private Long id;
+    /**
      * publicationDate -дата создания заказа на обслуживание автомобиля.
      */
-    private Date publicationDate;
+    private LocalDateTime publicationDate;
     /**
      * car -автомобиль поступивший на обслуживание.
      */
@@ -23,35 +29,30 @@ public class Order {
     /**
      * price -оцененный сервисом труд механика, выраженный в денежном эквиваленте.
      */
-    private Long price;
 
-    public Order(Date publicationDate, Car car, Mechanic mechanic, Long price) {
+    private BigDecimal price;
+
+    public Order(Long id, LocalDateTime publicationDate, Car car, Mechanic mechanic, BigDecimal price) {
+        this.id = id;
         this.publicationDate = publicationDate;
         this.car = car;
         this.mechanic = mechanic;
         this.price = price;
     }
 
-    public Order() {
+    public Long getId() {
+        return id;
     }
 
-    ;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "publicationDate=" + publicationDate +
-                ", car=" + car +
-                ", mechanic=" + mechanic +
-                ", price=" + price +
-                '}';
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public Date getPublicationDate() {
+    public LocalDateTime getPublicationDate() {
         return publicationDate;
     }
 
-    public void setPublicationDate(Date publicationDate) {
+    public void setPublicationDate(LocalDateTime publicationDate) {
         this.publicationDate = publicationDate;
     }
 
@@ -71,12 +72,23 @@ public class Order {
         this.mechanic = mechanic;
     }
 
-    public Long getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(Long price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", publicationDate=" + publicationDate +
+                ", car=" + car +
+                ", mechanic=" + mechanic +
+                ", price=" + price +
+                '}';
     }
 
     @Override
@@ -84,7 +96,8 @@ public class Order {
         if (this == o) return true;
         if (!(o instanceof Order)) return false;
         Order order = (Order) o;
-        return Objects.equals(getPublicationDate(), order.getPublicationDate()) &&
+        return Objects.equals(getId(), order.getId()) &&
+                Objects.equals(getPublicationDate(), order.getPublicationDate()) &&
                 Objects.equals(getCar(), order.getCar()) &&
                 Objects.equals(getMechanic(), order.getMechanic()) &&
                 Objects.equals(getPrice(), order.getPrice());
@@ -92,6 +105,6 @@ public class Order {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPublicationDate(), getCar(), getMechanic(), getPrice());
+        return Objects.hash(getId(), getPublicationDate(), getCar(), getMechanic(), getPrice());
     }
 }

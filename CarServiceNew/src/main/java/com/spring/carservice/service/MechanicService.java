@@ -10,42 +10,35 @@ public interface MechanicService {
     /**
      * Метод добавляющий нового механика в наш persistence layer
      *
-     * @param mechanic
+     * @param mechanicDto
      * @return -if success -return mechanic, if fail -return null
      */
-    Mechanic add(Mechanic mechanic);
-
-    /**
-     * Метод преобразовывает объект  из MechanicDto в стандартный вид Mechanic
-     *
-     * @param mechanicDto - Объект типа CarDto
-     * @return Mechanic -Объект типа Car
-     */
-    Mechanic fromDto(MechanicDto mechanicDto);
-
-    /**
-     * Данный метод преобразовывает объект типа Mechanic в объект типа MechanicDto
-     *
-     * @param mechanic - Объект типа Mechanic
-     * @return MechanicDto - Объект типа MechanicDto
-     */
-    MechanicDto toDto(Mechanic mechanic);
+    MechanicDto add(MechanicDto mechanicDto);
 
     /**
      * Метод возвращающий объект механик из persistence layer
      *
-     * @param Id - идентификационный номер механика
+     * @param id - идентификационный номер механика
      * @return if success -return mechanic, if fail -return null
      */
-    Mechanic getById(Long Id);
+    MechanicDto getById(Long id);
 
     /**
      * Метод Удаляющий объект механик из persistence layer
      *
-     * @param mechanic - механик для удаления
+     * @param id - id механик для удаления
      * @return -if success -return true, if fail -return false
      */
-    boolean delete(Mechanic mechanic);
+    boolean delete(Long id);
+
+    /**
+     * Метод добавляющий нового механика в наш persistence layer
+     *
+     * @param mechanicDto
+     * @return -if success -return mechanic, if fail -return null
+     */
+    MechanicDto update(MechanicDto mechanicDto);
+
 
     /**
      * Метод ищет свободного механика - реализация рандом
@@ -54,4 +47,9 @@ public interface MechanicService {
      * @return MechanicDto - механик для заказа
      */
     MechanicDto getFreeMechanic();
+
+    Mechanic fromDto(MechanicDto mechanicDto);
+
+    MechanicDto toDto(Mechanic mechanic);
+
 }

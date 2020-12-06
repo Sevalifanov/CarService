@@ -9,9 +9,7 @@ public interface OrderDao {
 
     Order addOrder(Order order);
 
-    boolean deleteOrder(Order order);
+    Order getById(Long id);
 
-    Order getByDate(Long milis);
-
-    boolean deleteFromOrderByDate(Long id);
+    boolean remove(Order order);
 }

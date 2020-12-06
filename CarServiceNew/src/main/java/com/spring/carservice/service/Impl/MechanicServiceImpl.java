@@ -3,7 +3,6 @@ package com.spring.carservice.service.Impl;
 import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dto.MechanicDto;
 import com.spring.carservice.model.Mechanic;
-import com.spring.carservice.service.AsyncProcessService;
 import com.spring.carservice.service.MechanicService;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -15,18 +14,44 @@ import java.util.Random;
 @PropertySource("classpath:application.properties")
 public class MechanicServiceImpl implements MechanicService {
     private MechanicDao mechanicDao;
-    private AsyncProcessService asyncProcessService;
 
-    public MechanicServiceImpl(MechanicDao mechanicDao, AsyncProcessService asyncProcessService) {
+    public MechanicServiceImpl(MechanicDao mechanicDao) {
         this.mechanicDao = mechanicDao;
-        this.asyncProcessService = asyncProcessService;
     }
 
     @Override
-    public Mechanic add(Mechanic mechanic) {
-        asyncProcessService.postOperation();
-        return mechanicDao.addMechanic(mechanic);
+    public MechanicDto add(MechanicDto mechanicDto) {
+        mechanicDao.save(fromDto(mechanicDto));
+        return mechanicDto;
+    }
 
+    @Override
+    public MechanicDto getById(Long Id) {
+        return toDto(mechanicDao.getById(Id));
+    }
+
+    @Override
+    public MechanicDto update(MechanicDto mechanicDto) {
+        mechanicDao.remove(mechanicDao.getById(mechanicDto.getId()));
+        mechanicDao.save(fromDto(mechanicDto));
+        return mechanicDto;
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return mechanicDao.remove(mechanicDao.getById(id));
+    }
+
+    @Override
+    public MechanicDto getFreeMechanic() {
+        List<Mechanic> mechanics = mechanicDao.getList();
+        Mechanic mechanic;
+        if (mechanics.size() > 0) {
+            mechanic = mechanics.get(new Random().nextInt(mechanics.size()));
+        } else {
+            throw new RuntimeException("There is no mechanic in our service. Please add mechanic by /save");
+        }
+        return toDto(mechanic);
     }
 
     @Override
@@ -42,29 +67,4 @@ public class MechanicServiceImpl implements MechanicService {
                 mechanic.getFirstName(),
                 mechanic.getLastName());
     }
-
-    @Override
-    public Mechanic getById(Long Id) {
-        return mechanicDao.getById(Id);
-
-    }
-
-    @Override
-    public boolean delete(Mechanic mechanic) {
-        return mechanicDao.deleteMechanic(mechanic);
-    }
-
-    @Override
-    public MechanicDto getFreeMechanic() {
-        List<Mechanic> mechanics = mechanicDao.getMechanics();
-        Mechanic mechanic;
-        if (mechanics.size() > 0) {
-            mechanic = mechanics.get(new Random().nextInt(mechanics.size()));
-        } else {
-            throw new RuntimeException("There is no mechanic in our service. Please add mechanic by /addMechanic");
-        }
-        return toDto(mechanic);
-    }
-
-
 }

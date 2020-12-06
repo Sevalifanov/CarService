@@ -5,10 +5,13 @@ import com.spring.carservice.model.Car;
 import com.spring.carservice.service.CarService;
 import com.spring.carservice.validator.CarDtoValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriBuilder;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping(value = "/car")
+@RequestMapping(value = "/api/v1/car")
 public class CarController {
     private CarService carService;
     private CarDtoValidator carDtoValidator;
@@ -25,10 +28,10 @@ public class CarController {
      * @return
      */
     @PostMapping
-    public CarDto addCar(@RequestBody CarDto carDto) {
+    public ResponseEntity<CarDto> addCar(@RequestBody CarDto carDto, UriComponentsBuilder uriBuilder) {
         carDtoValidator.validate(carDto);
-        Car car = carService.add(carService.fromDto(carDto));
-        return carService.toDto(car);
+        CarDto car = carService.add(carDto);
+        return ResponseEntity.created(uriBuilder.path("/api/v1/car/" + car.getId()).buildAndExpand(car).toUri()).body(car);
     }
 
     /**
@@ -39,18 +42,36 @@ public class CarController {
      */
     @GetMapping("/{id}")
     public CarDto getCarById(@PathVariable("id") Long id) {
-        return carService.toDto(carService.getById(id));
+        return carService.getById(id);
     }
 
     /**
      * Удаляет машину
      *
-     * @param carDto
+     * @param id автомобиля
      */
-    @DeleteMapping
-    public void deleteCar(@RequestBody CarDto carDto) {
-        carService.delete(carService.fromDto(carDto));
+    @DeleteMapping(value = "/{id}")
+    public void deleteCar(@PathVariable("id") Long id) {
+
+        carService.delete(id);
     }
+
+    /**
+     * Обновляем информацию по айди автомобиля
+     * @param carDto
+     * @param id
+     * @return
+     */
+    @PutMapping(value = "/{id}")
+    public CarDto updateCar(@RequestBody CarDto carDto, @PathVariable("id") Long id) {
+        if(!carDto.getId().equals(id)){
+            throw new RuntimeException();
+        }
+        carDtoValidator.validate(carDto);
+        CarDto car = carService.update(carDto);
+        return carDto;
+    }
+
 
 
 }

@@ -6,11 +6,11 @@ import com.spring.carservice.model.Mechanic;
 import java.util.List;
 
 public interface MechanicDao {
-    Mechanic addMechanic(Mechanic mechanic);
+    Mechanic save(Mechanic mechanic);
 
-    boolean deleteMechanic(Mechanic mechanic);
+    boolean remove(Mechanic mechanic);
 
-    List<Mechanic> getMechanics();
+    List<Mechanic> getList();
 
     Mechanic getById(Long id);
 }
