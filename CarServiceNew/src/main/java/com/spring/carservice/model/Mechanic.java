@@ -19,12 +19,6 @@ public class Mechanic {
      */
     private String lastName;
 
-    public Mechanic(Long id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     public Mechanic() {
     }
 
@@ -32,12 +26,10 @@ public class Mechanic {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Mechanic{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName;
+    public Mechanic(Long id, String firstName, String lastName) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Long getId() {
@@ -77,5 +69,13 @@ public class Mechanic {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getFirstName(), getLastName());
+    }
+
+    @Override
+    public String toString() {
+        return "Mechanic{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName;
     }
 }

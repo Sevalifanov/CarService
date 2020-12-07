@@ -1,6 +1,5 @@
 package com.spring.carservice.validator;
 
-import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.MechanicDto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

@@ -18,22 +18,13 @@ public class CarDto {
      */
     private String modelName;
 
+    public CarDto() {
+    }
+
     public CarDto(Long id, String brand, String modelName) {
         this.id = id;
         this.brand = brand;
         this.modelName = modelName;
-    }
-
-    public CarDto() {
-    }
-
-    @Override
-    public String toString() {
-        return "CarDto{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", modelName='" + modelName + '\'' +
-                '}';
     }
 
     public Long getId() {
@@ -58,5 +49,14 @@ public class CarDto {
 
     public void setModelName(String modelName) {
         this.modelName = modelName;
+    }
+
+    @Override
+    public String toString() {
+        return "CarDto{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", modelName='" + modelName + '\'' +
+                '}';
     }
 }

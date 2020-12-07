@@ -19,22 +19,13 @@ public class MechanicDto {
      */
     private String lastName;
 
+    public MechanicDto() {
+    }
+
     public MechanicDto(Long id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public MechanicDto() {
-    }
-
-    @Override
-    public String toString() {
-        return "MechanicDto{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
     }
 
     public Long getId() {
@@ -59,5 +50,14 @@ public class MechanicDto {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    @Override
+    public String toString() {
+        return "MechanicDto{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
     }
 }

@@ -21,11 +21,11 @@ public class OrderDto {
     /**
      * carDto -автомобиль поступивший на обслуживание.
      */
-    private CarDto carDto;
+    private Long carId;
     /**
      * mechanicDto -механик осблуживающий Т.С.
      */
-    private MechanicDto mechanicDto;
+    private Long mechanicId;
     /**
      * price -оцененный сервисом труд механика, выраженный в денежном эквиваленте.
      */
@@ -33,11 +33,11 @@ public class OrderDto {
 
     public OrderDto(){}
 
-    public OrderDto(Long id, LocalDateTime publicationDate, CarDto carDto, MechanicDto mechanicDto, BigDecimal price) {
+    public OrderDto(Long id, LocalDateTime publicationDate, Long carId, Long mechanicId, BigDecimal price) {
         this.id = id;
         this.publicationDate = publicationDate;
-        this.carDto = carDto;
-        this.mechanicDto = mechanicDto;
+        this.carId = carId;
+        this.mechanicId = mechanicId;
         this.price = price;
     }
 
@@ -57,20 +57,20 @@ public class OrderDto {
         this.publicationDate = publicationDate;
     }
 
-    public CarDto getCarDto() {
-        return carDto;
+    public Long getCarId() {
+        return carId;
     }
 
-    public void setCarDto(CarDto carDto) {
-        this.carDto = carDto;
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
-    public MechanicDto getMechanicDto() {
-        return mechanicDto;
+    public Long getMechanicId() {
+        return mechanicId;
     }
 
-    public void setMechanicDto(MechanicDto mechanicDto) {
-        this.mechanicDto = mechanicDto;
+    public void setMechanicId(Long mechanicId) {
+        this.mechanicId = mechanicId;
     }
 
     public BigDecimal getPrice() {
@@ -82,31 +82,20 @@ public class OrderDto {
     }
 
     @Override
-    public String toString() {
-        return "OrderDto{" +
-                "id=" + id +
-                ", publicationDate=" + publicationDate +
-                ", carDto=" + carDto +
-                ", mechanicDto=" + mechanicDto +
-                ", price=" + price +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof OrderDto)) return false;
         OrderDto orderDto = (OrderDto) o;
         return Objects.equals(getId(), orderDto.getId()) &&
                 Objects.equals(getPublicationDate(), orderDto.getPublicationDate()) &&
-                Objects.equals(getCarDto(), orderDto.getCarDto()) &&
-                Objects.equals(getMechanicDto(), orderDto.getMechanicDto()) &&
+                Objects.equals(getCarId(), orderDto.getCarId()) &&
+                Objects.equals(getMechanicId(), orderDto.getMechanicId()) &&
                 Objects.equals(getPrice(), orderDto.getPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getPublicationDate(), getCarDto(), getMechanicDto(), getPrice());
+        return Objects.hash(getId(), getPublicationDate(), getCarId(), getMechanicId(), getPrice());
     }
 }
 
