@@ -1,6 +1,5 @@
-package com.spring.carservice.service.Impl;
+package com.spring.carservice.service;
 
-import com.spring.carservice.service.AsyncProcessService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.scheduling.annotation.Async;
@@ -15,15 +14,16 @@ public class AsyncProcessServiceImpl implements AsyncProcessService {
     @Override
     @Async
     public void postOperation() {
-        System.out.println("post operation begin in thread : "+Thread.currentThread().getName() );
+
+        log.info("post operation begin in thread : "+Thread.currentThread().getName() );
         LockSupport.parkNanos(1_000_000_000L);
-        System.out.print("25%");
+        log.info("25%"+Thread.currentThread().getName());
         LockSupport.parkNanos(1_000_000_000L);
-        System.out.print("50%");
+        log.info("50%"+Thread.currentThread().getName());
         LockSupport.parkNanos(1_000_000_000L);
-        System.out.print("75%");
+        log.info("75%"+Thread.currentThread().getName());
         LockSupport.parkNanos(1_000_000_000L);
-        System.out.print("100%");
-        System.out.println("<---post operation complete");
+        log.info("100%"+Thread.currentThread().getName());
+        log.info("<---post operation complete");
     }
 }

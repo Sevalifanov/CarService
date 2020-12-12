@@ -1,24 +1,27 @@
-package com.spring.carservice.service.Impl;
+package com.spring.carservice.service;
 
 import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.model.Car;
 import com.spring.carservice.service.CarService;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CarServiceImpl implements CarService {
 
     private CarDao carDao;
+    private AsyncProcessService asyncProcessService;
 
-    public CarServiceImpl(CarDao carDao) {
+    public CarServiceImpl(CarDao carDao, AsyncProcessService asyncProcessService) {
         this.carDao = carDao;
+        this.asyncProcessService = asyncProcessService;
     }
 
     @Override
     public CarDto add(CarDto car) {
+        asyncProcessService.postOperation();
         return toDto(carDao.save(fromDto(car)));
-
     }
 
     @Override
@@ -35,12 +38,10 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarDto update(CarDto carDto) {
         carDao.remove(carDao.getById(carDto.getId()));
-        carDao.save(fromDto(carDto));
-        return carDto;
+        return toDto(carDao.save(fromDto(carDto)));
     }
 
-    @Override
-    public Car fromDto(CarDto carDto) {
+    private Car fromDto(CarDto carDto) {
         return new Car(
                 carDto.getId(),
                 carDto.getBrand(),
@@ -48,8 +49,7 @@ public class CarServiceImpl implements CarService {
         );
     }
 
-    @Override
-    public CarDto toDto(Car car) {
+    private CarDto toDto(Car car) {
         return new CarDto(
                 car.getId(),
                 car.getBrand(),

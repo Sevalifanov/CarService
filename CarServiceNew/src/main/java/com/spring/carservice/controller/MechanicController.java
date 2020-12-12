@@ -1,11 +1,8 @@
 package com.spring.carservice.controller;
 
-import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.MechanicDto;
-import com.spring.carservice.model.Mechanic;
 import com.spring.carservice.service.MechanicService;
 import com.spring.carservice.validator.MechanicDtoValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -65,11 +62,10 @@ public class MechanicController {
     @PutMapping(value = "/{id}")
     public MechanicDto updateMechanic(@RequestBody MechanicDto mechanicDto, @PathVariable("id") Long id) {
         if (!mechanicDto.getId().equals(id)) {
-            throw new RuntimeException();
+            throw new RuntimeException("You tried to update a mechanic does not exist");
         }
         mechanicDtoValidator.validate(mechanicDto);
-        mechanicService.update(mechanicDto);
-        return mechanicDto;
+        return mechanicService.update(mechanicDto);
     }
 
 
