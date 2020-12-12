@@ -8,32 +8,25 @@ public class CarDto {
      * id  -автомобиля - уникальный номер для любого т.с. на планете
      */
     private Long id;
+
     /**
      * brand -марка автомобля например: Ford, Toyota, etc..
      */
     private String brand;
+
     /**
      * model -модель автомобиля. Каждая марка автомобилей имеет несколько моделей предствленных на рынке.
      * например : Ford F-150, Ford Focus, Ford Explorer, etc.
      */
     private String modelName;
 
+    public CarDto() {
+    }
+
     public CarDto(Long id, String brand, String modelName) {
         this.id = id;
         this.brand = brand;
         this.modelName = modelName;
-    }
-
-    public CarDto() {
-    }
-
-    @Override
-    public String toString() {
-        return "CarDto{" +
-                "id=" + id +
-                ", brand='" + brand + '\'' +
-                ", modelName='" + modelName + '\'' +
-                '}';
     }
 
     public Long getId() {
@@ -58,5 +51,14 @@ public class CarDto {
 
     public void setModelName(String modelName) {
         this.modelName = modelName;
+    }
+
+    @Override
+    public String toString() {
+        return "CarDto{" +
+                "id=" + id +
+                ", brand='" + brand + '\'' +
+                ", modelName='" + modelName + '\'' +
+                '}';
     }
 }

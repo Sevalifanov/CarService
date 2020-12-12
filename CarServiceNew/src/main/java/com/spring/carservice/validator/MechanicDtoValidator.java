@@ -1,6 +1,5 @@
 package com.spring.carservice.validator;
 
-import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.MechanicDto;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,6 +7,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+/**
+ * MechanicDtoValidator - класс валидирующий входные значения для модели mechanic
+ */
 @Component
 @PropertySource("classpath:validation.properties")
 public class MechanicDtoValidator {
@@ -19,6 +21,7 @@ public class MechanicDtoValidator {
     /**
      * Проверяем на валидность  mechanicDto который прилетает нам от внешней системы
      * Метод выбросит экспешн, если у carDto будут некорректные поля.
+     *
      * @param mechanicDto - механик
      */
     public void validate(MechanicDto mechanicDto) {
@@ -27,5 +30,4 @@ public class MechanicDtoValidator {
             throw new IllegalArgumentException(exceptionMechanicValidateMessage);
         }
     }
-
 }

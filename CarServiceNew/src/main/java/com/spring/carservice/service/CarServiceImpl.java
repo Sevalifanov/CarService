@@ -1,4 +1,4 @@
-package com.spring.carservice.service.Impl;
+package com.spring.carservice.service;
 
 import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dto.CarDto;
@@ -18,7 +18,6 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarDto add(CarDto car) {
         return toDto(carDao.save(fromDto(car)));
-
     }
 
     @Override
@@ -35,12 +34,10 @@ public class CarServiceImpl implements CarService {
     @Override
     public CarDto update(CarDto carDto) {
         carDao.remove(carDao.getById(carDto.getId()));
-        carDao.save(fromDto(carDto));
-        return carDto;
+        return toDto(carDao.save(fromDto(carDto)));
     }
 
-    @Override
-    public Car fromDto(CarDto carDto) {
+    private Car fromDto(CarDto carDto) {
         return new Car(
                 carDto.getId(),
                 carDto.getBrand(),
@@ -48,8 +45,7 @@ public class CarServiceImpl implements CarService {
         );
     }
 
-    @Override
-    public CarDto toDto(Car car) {
+    private CarDto toDto(Car car) {
         return new CarDto(
                 car.getId(),
                 car.getBrand(),

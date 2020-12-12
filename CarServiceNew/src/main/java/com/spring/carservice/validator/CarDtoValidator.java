@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+/**
+ * CarDtoValidator - класс валидирующий входные значения для модели car
+ */
 @Component
 @PropertySource("classpath:validation.properties")
 public class CarDtoValidator {
-
     private static final Logger logger = LogManager.getLogger(CarDtoValidator.class.getName());
 
     @Value("${exception.car.validate}")
@@ -19,6 +21,7 @@ public class CarDtoValidator {
     /**
      * Проверяем на валидность carDto который прилетает нам от внешней системы
      * Метод выбросит экспешн, если у carDto будут некорректные поля.
+     *
      * @param carDto
      */
     public void validate(CarDto carDto) {
@@ -26,8 +29,5 @@ public class CarDtoValidator {
             logger.error("some field(s) is(are) incorrect");
             throw new IllegalArgumentException(exceptionCarValidateMessage);
         }
-
-
     }
-
 }

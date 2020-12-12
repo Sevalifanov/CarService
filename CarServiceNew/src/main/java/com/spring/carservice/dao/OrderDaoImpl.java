@@ -1,4 +1,4 @@
-package com.spring.carservice.dao.impl;
+package com.spring.carservice.dao;
 
 import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dao.MechanicDao;
@@ -28,7 +28,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public Order addOrder(Order order) {
+    public Order save(Order order) {
         orders.add(order);
         return order;
     }

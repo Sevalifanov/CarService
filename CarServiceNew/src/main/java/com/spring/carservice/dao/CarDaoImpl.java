@@ -1,4 +1,4 @@
-package com.spring.carservice.dao.impl;
+package com.spring.carservice.dao;
 
 import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.model.Car;
@@ -8,6 +8,7 @@ import java.util.*;
 
 @Repository
 public class CarDaoImpl implements CarDao {
+
     List<Car> cars = new ArrayList<>();
 
     @Override

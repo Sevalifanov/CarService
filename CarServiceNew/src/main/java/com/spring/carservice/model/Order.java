@@ -2,7 +2,6 @@ package com.spring.carservice.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Objects;
 
 /**
@@ -10,26 +9,30 @@ import java.util.Objects;
  * ему присваевается механик и цена диагностики
  */
 public class Order {
+
     /**
      * Id - айдентикационный номер заказа
      */
     private Long id;
+
     /**
      * publicationDate -дата создания заказа на обслуживание автомобиля.
      */
     private LocalDateTime publicationDate;
+
     /**
      * car -автомобиль поступивший на обслуживание.
      */
     private Car car;
+
     /**
      * mechanic -механик осблуживающий Т.С.
      */
     private Mechanic mechanic;
+
     /**
      * price -оцененный сервисом труд механика, выраженный в денежном эквиваленте.
      */
-
     private BigDecimal price;
 
     public Order(Long id, LocalDateTime publicationDate, Car car, Mechanic mechanic, BigDecimal price) {

@@ -1,7 +1,6 @@
 package com.spring.carservice.service;
 
 import com.spring.carservice.dto.CarDto;
-import com.spring.carservice.model.Car;
 
 /**
  * CarService - класс для работы с уровнем бизнес логикой сущностей Car и CarDto.
@@ -38,9 +37,5 @@ public interface CarService {
      * @return -if success -return car, if fail -return null
      */
     CarDto update(CarDto carDto);
-
-    CarDto toDto(Car car);
-
-    Car fromDto(CarDto carDto);
 
 }
