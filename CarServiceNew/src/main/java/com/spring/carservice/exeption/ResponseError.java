@@ -2,15 +2,37 @@ package com.spring.carservice.exeption;
 
 import java.util.UUID;
 
+/**
+ * ResponseError - модель для отображения ошибки
+ */
 public class ResponseError {
+    /**
+     * id - уникальный номер события
+     */
+    private UUID id;
 
-        private UUID id;
-        private Long timestamp;
-        private String code;
-        private String message;
-        private String system;
+    /**
+     * timestamp- время события
+     */
+    private Long timestamp;
 
+    /**
+     * code - код ошибки
+     */
+    private String code;
 
+    /**
+     * message -сообщение о ошибке
+     */
+    private String message;
+
+    /**
+     * system -место ошибки
+     */
+    private String system;
+
+    public ResponseError() {
+    }
 
     public ResponseError(UUID id, Long timestamp, String code, String message, String system) {
         this.id = id;
@@ -18,9 +40,6 @@ public class ResponseError {
         this.code = code;
         this.message = message;
         this.system = system;
-    }
-
-    public ResponseError() {
     }
 
     public UUID getId() {

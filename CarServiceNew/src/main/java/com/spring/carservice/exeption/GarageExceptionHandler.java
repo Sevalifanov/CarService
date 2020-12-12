@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.util.UUID;
 
-
 @RestControllerAdvice(basePackages = "com.spring.carservice.controller")
 public class GarageExceptionHandler {
     private static final Logger log = LogManager.getLogger(GarageExceptionHandler.class.getName());
