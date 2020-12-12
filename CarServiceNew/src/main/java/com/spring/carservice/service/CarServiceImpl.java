@@ -4,19 +4,23 @@ import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.model.Car;
 import com.spring.carservice.service.CarService;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CarServiceImpl implements CarService {
 
     private CarDao carDao;
+    private AsyncProcessService asyncProcessService;
 
-    public CarServiceImpl(CarDao carDao) {
+    public CarServiceImpl(CarDao carDao, AsyncProcessService asyncProcessService) {
         this.carDao = carDao;
+        this.asyncProcessService = asyncProcessService;
     }
 
     @Override
     public CarDto add(CarDto car) {
+        asyncProcessService.postOperation();
         return toDto(carDao.save(fromDto(car)));
     }
 
