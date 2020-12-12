@@ -6,14 +6,17 @@ package com.spring.carservice.dto;
  * MechanicDto -воплощение этого шаблона для модели Mechanic
  */
 public class MechanicDto {
+
     /**
      * id -Внутренний идентификационный номер сотрудника, работающего в сервисе
      */
     private Long id;
+
     /**
      * firstName -Имя потрудника
      */
     private String firstName;
+
     /**
      * lastName -Фамилия сотрудника
      */

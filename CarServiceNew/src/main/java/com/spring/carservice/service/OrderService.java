@@ -3,7 +3,9 @@ package com.spring.carservice.service;
 import com.spring.carservice.dto.OrderDto;
 
 import java.util.List;
-
+/**
+ * MechanicService - интерфейс содержащий методы для работы с уровнем бизнес логикой сущностей Mechanic и MechanicDto.
+ */
 public interface OrderService {
     /**
      * Добавляем  машину в наш сервис на диагностику, Присваиваем механика и цену диагностики

@@ -1,4 +1,4 @@
-package com.spring.carservice.service.Impl;
+package com.spring.carservice.service;
 
 import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dto.MechanicDto;

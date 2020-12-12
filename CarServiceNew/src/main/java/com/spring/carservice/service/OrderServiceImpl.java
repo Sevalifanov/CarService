@@ -1,11 +1,10 @@
-package com.spring.carservice.service.Impl;
+package com.spring.carservice.service;
 
 import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dao.OrderDao;
 import com.spring.carservice.dto.OrderDto;
 import com.spring.carservice.model.Order;
-import com.spring.carservice.service.OrderService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;

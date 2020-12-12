@@ -10,22 +10,27 @@ import java.util.Objects;
  * OrderDto -воплощение этого шаблона dto для модели Order
  */
 public class OrderDto {
+
     /**
      * Id - айдентикационный номер заказа
      */
     private Long id;
+
     /**
      * publicationDate -дата создания заказа на обслуживание автомобиля.
      */
     private LocalDateTime publicationDate;
+
     /**
      * carDto -автомобиль поступивший на обслуживание.
      */
     private Long carId;
+
     /**
      * mechanicDto -механик осблуживающий Т.С.
      */
     private Long mechanicId;
+
     /**
      * price -оцененный сервисом труд механика, выраженный в денежном эквиваленте.
      */

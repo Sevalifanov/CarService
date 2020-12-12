@@ -6,14 +6,17 @@ import java.util.Objects;
  * mechanic -специалист по диагностике и ремонту автомобилей.
  */
 public class Mechanic {
+
     /**
      * id -Внутренний идентификационный номер сотрудника, работающего в сервисе
      */
     private Long id;
+
     /**
      * firstName -Имя потрудника
      */
     private String firstName;
+
     /**
      * lastName -Фамилия сотрудника
      */

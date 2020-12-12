@@ -8,10 +8,12 @@ public class CarDto {
      * id  -автомобиля - уникальный номер для любого т.с. на планете
      */
     private Long id;
+
     /**
      * brand -марка автомобля например: Ford, Toyota, etc..
      */
     private String brand;
+
     /**
      * model -модель автомобиля. Каждая марка автомобилей имеет несколько моделей предствленных на рынке.
      * например : Ford F-150, Ford Focus, Ford Explorer, etc.
