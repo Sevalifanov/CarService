@@ -1,4 +1,4 @@
-package com.spring.carservice.configuration;
+package com.spring.carservice.exeption;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -6,6 +6,9 @@ import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 
 import java.lang.reflect.Method;
 
+/**
+ * Обработчик ошибок для ассинхронных вызовов
+ */
 public class AsyncExceptionHandler implements AsyncUncaughtExceptionHandler {
 
     private static final Logger log = LogManager.getLogger(AsyncExceptionHandler.class.getName());
