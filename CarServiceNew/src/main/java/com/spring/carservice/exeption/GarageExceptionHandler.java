@@ -22,13 +22,13 @@ public class GarageExceptionHandler {
     private String systemName;
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ResponseError> illegalArgumentException(IllegalArgumentException exception) {
+    public ResponseEntity<ResponseError> validationException(ValidationException exception) {
         log.debug(exception.getLocalizedMessage(), exception);
         ResponseError error = new ResponseError(
                 UUID.randomUUID(),
                 Instant.now(),
                 "illegalArgumentException",
-                exception.getMessage(),
+                exception.getStrErrors().toString(),
                 "validation"
         );
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
