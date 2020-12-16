@@ -11,16 +11,13 @@ import org.springframework.stereotype.Service;
 public class CarServiceImpl implements CarService {
 
     private CarDao carDao;
-    private AsyncProcessService asyncProcessService;
 
-    public CarServiceImpl(CarDao carDao, AsyncProcessService asyncProcessService) {
+    public CarServiceImpl(CarDao carDao) {
         this.carDao = carDao;
-        this.asyncProcessService = asyncProcessService;
     }
 
     @Override
     public CarDto add(CarDto car) {
-        asyncProcessService.postOperation();
         return toDto(carDao.save(fromDto(car)));
     }
 

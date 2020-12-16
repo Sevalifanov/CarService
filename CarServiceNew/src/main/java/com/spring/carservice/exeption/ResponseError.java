@@ -1,5 +1,6 @@
 package com.spring.carservice.exeption;
 
+import java.time.Instant;
 import java.util.UUID;
 
 /**
@@ -14,7 +15,7 @@ public class ResponseError {
     /**
      * timestamp- время события
      */
-    private Long timestamp;
+    private Instant timestamp;
 
     /**
      * code - код ошибки
@@ -34,7 +35,7 @@ public class ResponseError {
     public ResponseError() {
     }
 
-    public ResponseError(UUID id, Long timestamp, String code, String message, String system) {
+    public ResponseError(UUID id, Instant timestamp, String code, String message, String system) {
         this.id = id;
         this.timestamp = timestamp;
         this.code = code;
@@ -50,11 +51,11 @@ public class ResponseError {
         this.id = id;
     }
 
-    public Long getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Long timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 

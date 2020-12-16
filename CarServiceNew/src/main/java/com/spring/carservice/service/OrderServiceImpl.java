@@ -8,7 +8,6 @@ import com.spring.carservice.model.Order;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,13 +20,11 @@ public class OrderServiceImpl implements OrderService {
     private CarDao carDao;
     private MechanicDao mechanicDao;
     private OrderDao orderDao;
-    private AsyncProcessService asyncProcessService;
 
-    public OrderServiceImpl(CarDao carDao, MechanicDao mechanicDao, OrderDao orderDao, AsyncProcessService asyncProcessService) {
+    public OrderServiceImpl(CarDao carDao, MechanicDao mechanicDao, OrderDao orderDao) {
         this.carDao = carDao;
         this.mechanicDao = mechanicDao;
         this.orderDao = orderDao;
-        this.asyncProcessService = asyncProcessService;
     }
 
     @Value("${garage.diagnostics.price}")
@@ -44,7 +41,6 @@ public class OrderServiceImpl implements OrderService {
         if (getOrderDtoByCarId(orderDto.getCarId()) != null) {
             throw new RuntimeException("Car is already in service, you should add another car please, or use update");
         }
-        asyncProcessService.postOperation();
         return toDto(orderDao.save(fromDto(orderDto)));
     }
 

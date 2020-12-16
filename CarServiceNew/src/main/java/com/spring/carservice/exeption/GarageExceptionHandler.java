@@ -2,24 +2,31 @@ package com.spring.carservice.exeption;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.Instant;
 import java.util.UUID;
 
+@PropertySource("classpath:validation.properties")
 @RestControllerAdvice(basePackages = "com.spring.carservice.controller")
 public class GarageExceptionHandler {
     private static final Logger log = LogManager.getLogger(GarageExceptionHandler.class.getName());
+
+    @Value("${system.name}")
+    private String systemName;
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ResponseError> illegalArgumentException(IllegalArgumentException exception) {
         log.debug(exception.getLocalizedMessage(), exception);
         ResponseError error = new ResponseError(
                 UUID.randomUUID(),
-                System.currentTimeMillis(),
+                Instant.now(),
                 "illegalArgumentException",
                 exception.getMessage(),
                 "validation"
@@ -32,10 +39,10 @@ public class GarageExceptionHandler {
         log.debug(exception.getLocalizedMessage(), exception);
         ResponseError error = new ResponseError(
                 UUID.randomUUID(),
-                System.currentTimeMillis(),
+                Instant.now(),
                 "RunTimeException",
                 "Something goes wrong",
-                "mySystem"
+                systemName
         );
         log.debug(exception.getStackTrace(), exception);
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -46,10 +53,10 @@ public class GarageExceptionHandler {
         log.debug(exception.getLocalizedMessage(), exception);
         ResponseError error = new ResponseError(
                 UUID.randomUUID(),
-                System.currentTimeMillis(),
+                Instant.now(),
                 "NullPointerException",
                 "object does not exist or cannot be created ",
-                "mySystem"
+                systemName
         );
         log.debug(exception.getStackTrace(), exception);
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);

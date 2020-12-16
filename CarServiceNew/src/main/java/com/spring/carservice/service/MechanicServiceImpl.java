@@ -15,16 +15,13 @@ import java.util.Random;
 @PropertySource("classpath:application.properties")
 public class MechanicServiceImpl implements MechanicService {
     private MechanicDao mechanicDao;
-    private AsyncProcessService asyncProcessService;
 
-    public MechanicServiceImpl(MechanicDao mechanicDao, AsyncProcessService asyncProcessService) {
+    public MechanicServiceImpl(MechanicDao mechanicDao) {
         this.mechanicDao = mechanicDao;
-        this.asyncProcessService = asyncProcessService;
     }
 
     @Override
     public MechanicDto add(MechanicDto mechanicDto) {
-        asyncProcessService.postOperation();
         return toDto(mechanicDao.save(fromDto(mechanicDto)));
     }
 
