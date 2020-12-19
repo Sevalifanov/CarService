@@ -1,6 +1,5 @@
 package com.spring.carservice.dao;
 
-import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dao.mapper.MechanicRowMapper;
 import com.spring.carservice.model.Mechanic;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,8 +31,8 @@ public class MechanicDaoImpl implements MechanicDao {
 
     @Override
     public void remove(Mechanic mechanic) {
-        jdbcTemplate.update("DELETE FROM mechanic WHERE id = ?, first_name = ?, last_name = ?",
-                new Object[]{mechanic.getId(), mechanic.getFirstName(), mechanic.getLastName()});
+        jdbcTemplate.update("DELETE FROM mechanic WHERE id = ?",
+                new Object[]{mechanic.getId()});
     }
 
     @Override
@@ -45,7 +44,6 @@ public class MechanicDaoImpl implements MechanicDao {
     public List<Mechanic> getList() {
         return jdbcTemplate.query("SELECT * FROM mechanic", new MechanicRowMapper());
     }
-
 
 
 }

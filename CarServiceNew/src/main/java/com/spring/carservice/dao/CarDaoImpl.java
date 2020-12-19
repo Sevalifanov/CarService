@@ -1,6 +1,5 @@
-package com.spring.carservice.dao.impl;
+package com.spring.carservice.dao;
 
-import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dao.mapper.CarRowMapper;
 import com.spring.carservice.model.Car;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,8 +31,8 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public void remove(Car car) {
-        jdbcTemplate.update("DELETE FROM car WHERE id = ?, brand = ?, model_name = ?",
-                new Object[]{car.getId(), car.getBrand(), car.getModelName()});
+        jdbcTemplate.update("DELETE FROM car WHERE id = ?",
+                new Object[]{car.getId()});
     }
 
 

@@ -1,8 +1,5 @@
 package com.spring.carservice.dao;
 
-import com.spring.carservice.dao.CarDao;
-import com.spring.carservice.dao.MechanicDao;
-import com.spring.carservice.dao.OrderDao;
 import com.spring.carservice.dao.mapper.OrderRowMapper;
 import com.spring.carservice.model.Order;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -47,12 +44,8 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public void remove(Order order) {
-        jdbcTemplate.update("DELETE FROM orders WHERE id = ?, publication_date = ?, car_id = ?, mechanic_id = ?, price = ?",
-                new Object[]{order.getId(),
-                order.getPublicationDate().toString(),
-                order.getCar().getId(),
-                order.getMechanic().getId(),
-                order.getPrice()});
+        jdbcTemplate.update("DELETE FROM orders WHERE id = ?",
+                new Object[]{order.getId()});
     }
     @Override
     public List<Order> getList() {
