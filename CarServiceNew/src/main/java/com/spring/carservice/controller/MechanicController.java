@@ -1,6 +1,7 @@
 package com.spring.carservice.controller;
 
 import com.spring.carservice.dto.MechanicDto;
+import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.service.MechanicService;
 import com.spring.carservice.validator.MechanicDtoValidator;
 import org.springframework.http.ResponseEntity;
@@ -62,7 +63,7 @@ public class MechanicController {
     @PutMapping(value = "/{id}")
     public MechanicDto updateMechanic(@RequestBody MechanicDto mechanicDto, @PathVariable("id") Long id) {
         if (!mechanicDto.getId().equals(id)) {
-            throw new RuntimeException("You tried to update a mechanic does not exist");
+            throw new NonExistingException("You tried to update a mechanic did not exist");
         }
         mechanicDtoValidator.validate(mechanicDto);
         return mechanicService.update(mechanicDto);

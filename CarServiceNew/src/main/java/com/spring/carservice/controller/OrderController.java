@@ -1,6 +1,7 @@
 package com.spring.carservice.controller;
 
 import com.spring.carservice.dto.OrderDto;
+import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -63,7 +64,7 @@ public class OrderController {
     @PutMapping(value = "/{id}")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto, @PathVariable("id") Long id) {
         if (!orderDto.getId().equals(id)) {
-            throw new RuntimeException("You tried to update a order does not exist");
+            throw new NonExistingException("You tried to update a order did not exist");
         }
         return orderService.update(orderDto);
     }
