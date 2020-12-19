@@ -60,7 +60,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrderDto> getOrders() {
-        List<Order> orders = orderDao.getOrders();
+        List<Order> orders = orderDao.getList();
         List<OrderDto> orderDtos = new ArrayList<>();
         for (Order order : orders) {
             orderDtos.add(toDto(order));
@@ -69,8 +69,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public boolean delete(Long id) {
-        return orderDao.remove(orderDao.getById(id));
+    public void delete(Long id) {
+        orderDao.remove(orderDao.getById(id));
     }
 
     @Override
