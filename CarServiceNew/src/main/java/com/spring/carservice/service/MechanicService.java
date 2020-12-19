@@ -1,7 +1,6 @@
 package com.spring.carservice.service;
 
 import com.spring.carservice.dto.MechanicDto;
-import com.spring.carservice.model.Mechanic;
 
 /**
  * MechanicService - класс для работы с уровнем бизнес логикой сущностей Mechanic и MechanicDto.
@@ -47,9 +46,5 @@ public interface MechanicService {
      * @return MechanicDto - механик для заказа
      */
     MechanicDto getFreeMechanic();
-
-    Mechanic fromDto(MechanicDto mechanicDto);
-
-    MechanicDto toDto(Mechanic mechanic);
 
 }

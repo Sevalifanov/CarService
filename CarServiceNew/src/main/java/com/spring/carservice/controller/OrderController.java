@@ -1,15 +1,13 @@
 package com.spring.carservice.controller;
 
-import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.OrderDto;
+import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.service.OrderService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.time.ZoneOffset;
-
 
 @RestController
 @RequestMapping(value = "/api/v1/order")
@@ -24,14 +22,14 @@ public class OrderController {
     /**
      * Этот метод добавляет новую машину
      *
-     * @param carDto
+     * @param orderDto
      * @return OrderDto -заказ наряд возвращаем клиенту.
      */
     @PostMapping
-    public ResponseEntity<OrderDto> addOrder(@RequestBody CarDto carDto, UriComponentsBuilder uriBuilder) {
-        OrderDto orderDto = orderService.add(carDto);
+    public ResponseEntity<OrderDto> addOrder(@RequestBody OrderDto orderDto, UriComponentsBuilder uriBuilder) {
+        OrderDto result = orderService.add(orderDto);
         return ResponseEntity.created(uriBuilder.path("/api/v1/order/" + orderDto.getPublicationDate().toEpochSecond(ZoneOffset.UTC))
-                .buildAndExpand(orderDto).toUri()).body(orderDto);
+                .buildAndExpand(result).toUri()).body(result);
     }
 
     /**
@@ -66,10 +64,9 @@ public class OrderController {
     @PutMapping(value = "/{id}")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto, @PathVariable("id") Long id) {
         if (!orderDto.getId().equals(id)) {
-            throw new RuntimeException();
+            throw new NonExistingException("You tried to update a order did not exist");
         }
-        orderService.update(orderDto);
-        return orderDto;
+        return orderService.update(orderDto);
     }
 
 }

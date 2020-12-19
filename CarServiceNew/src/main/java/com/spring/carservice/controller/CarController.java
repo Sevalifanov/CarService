@@ -1,13 +1,11 @@
 package com.spring.carservice.controller;
 
 import com.spring.carservice.dto.CarDto;
-import com.spring.carservice.model.Car;
+import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.service.CarService;
 import com.spring.carservice.validator.CarDtoValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.util.UriBuilder;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -52,7 +50,6 @@ public class CarController {
      */
     @DeleteMapping(value = "/{id}")
     public void deleteCar(@PathVariable("id") Long id) {
-
         carService.delete(id);
     }
 
@@ -65,11 +62,10 @@ public class CarController {
     @PutMapping(value = "/{id}")
     public CarDto updateCar(@RequestBody CarDto carDto, @PathVariable("id") Long id) {
         if(!carDto.getId().equals(id)){
-            throw new RuntimeException();
+            throw new NonExistingException("You tried to update a car did not exist");
         }
         carDtoValidator.validate(carDto);
-        CarDto car = carService.update(carDto);
-        return carDto;
+        return carService.update(carDto);
     }
 
 

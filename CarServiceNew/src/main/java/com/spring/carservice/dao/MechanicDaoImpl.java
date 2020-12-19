@@ -1,4 +1,4 @@
-package com.spring.carservice.dao.impl;
+package com.spring.carservice.dao;
 
 import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dao.mapper.MechanicRowMapper;

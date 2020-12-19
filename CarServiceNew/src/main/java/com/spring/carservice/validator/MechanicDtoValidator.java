@@ -1,13 +1,19 @@
 package com.spring.carservice.validator;
 
-import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.dto.MechanicDto;
+import com.spring.carservice.exeption.ValidationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * MechanicDtoValidator - класс валидирующий входные значения для модели mechanic
+ */
 @Component
 @PropertySource("classpath:validation.properties")
 public class MechanicDtoValidator {
@@ -18,14 +24,26 @@ public class MechanicDtoValidator {
 
     /**
      * Проверяем на валидность  mechanicDto который прилетает нам от внешней системы
-     * Метод выбросит экспешн, если у carDto будут некорректные поля.
+     * Метод выбросит экспешн, если у mechanicDto будут некорректные поля.
+     *
      * @param mechanicDto - механик
      */
     public void validate(MechanicDto mechanicDto) {
-        if (mechanicDto.getId() == null || mechanicDto.getFirstName() == null || mechanicDto.getLastName() == null || mechanicDto.getLastName().equals("") || mechanicDto.getFirstName().equals("")) {
-            logger.error("try to enter incorrect info");
-            throw new IllegalArgumentException(exceptionMechanicValidateMessage);
+        List<Error> errors = new ArrayList<>();
+        if (mechanicDto.getId() == null) {
+            logger.error("try to enter incorrect mechanicId ");
+            errors.add(new Error(exceptionMechanicValidateMessage + "incorrect mechanicId"));
+        }
+        if (mechanicDto.getLastName().equals("")) {
+            logger.error("try to enter incorrect LastName");
+            errors.add(new Error(exceptionMechanicValidateMessage + " incorrect LastName"));
+        }
+        if (mechanicDto.getFirstName().equals("")) {
+            logger.error("try to enter incorrect FirstName");
+            errors.add(new Error(exceptionMechanicValidateMessage + "incorrect FirstName"));
+        }
+        if (!errors.isEmpty()) {
+            throw new ValidationException(exceptionMechanicValidateMessage, errors);
         }
     }
-
 }

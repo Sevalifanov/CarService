@@ -2,15 +2,8 @@ package com.spring.carservice.configuration;
 
 import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.SingleConnectionDataSource;
-import org.springframework.transaction.TransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 
 import javax.sql.DataSource;
 

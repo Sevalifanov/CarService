@@ -1,10 +1,11 @@
-package com.spring.carservice.service.Impl;
+package com.spring.carservice.service;
 
 import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dto.MechanicDto;
 import com.spring.carservice.model.Mechanic;
 import com.spring.carservice.service.MechanicService;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +22,7 @@ public class MechanicServiceImpl implements MechanicService {
 
     @Override
     public MechanicDto add(MechanicDto mechanicDto) {
-        mechanicDao.save(fromDto(mechanicDto));
-        return mechanicDto;
+        return toDto(mechanicDao.save(fromDto(mechanicDto)));
     }
 
     @Override
@@ -33,8 +33,8 @@ public class MechanicServiceImpl implements MechanicService {
     @Override
     public MechanicDto update(MechanicDto mechanicDto) {
         mechanicDao.remove(mechanicDao.getById(mechanicDto.getId()));
-        mechanicDao.save(fromDto(mechanicDto));
-        return mechanicDto;
+        return toDto(mechanicDao.save(fromDto(mechanicDto)));
+
     }
 
     @Override
@@ -54,15 +54,13 @@ public class MechanicServiceImpl implements MechanicService {
         return toDto(mechanic);
     }
 
-    @Override
-    public Mechanic fromDto(MechanicDto mechanicDto) {
+    private Mechanic fromDto(MechanicDto mechanicDto) {
         return new Mechanic(mechanicDto.getId(),
                 mechanicDto.getFirstName(),
                 mechanicDto.getLastName());
     }
 
-    @Override
-    public MechanicDto toDto(Mechanic mechanic) {
+    private MechanicDto toDto(Mechanic mechanic) {
         return new MechanicDto(mechanic.getId(),
                 mechanic.getFirstName(),
                 mechanic.getLastName());

@@ -82,7 +82,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\"id\" : 2,\r\n\"brand\" : \"AlfaRomeo\",\r\n\"modelName\" : \"156\"}",
+					"raw": "{\r\n    \"id\": 1607269442818,\r\n    \"publicationDate\": [\r\n        2020,\r\n        12,\r\n        6,\r\n        18,\r\n        44,\r\n        2,\r\n        818622500\r\n    ],\r\n    \"carId\": 4,\r\n    \"mechanicId\": 3,\r\n    \"price\": 16\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -131,7 +131,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:8080/api/v1/car/2",
+					"raw": "localhost:8080/api/v1/car/3",
 					"host": [
 						"localhost"
 					],
@@ -140,7 +140,7 @@
 						"api",
 						"v1",
 						"car",
-						"2"
+						"3"
 					]
 				}
 			},

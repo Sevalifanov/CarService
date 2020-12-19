@@ -15,9 +15,9 @@
                      remarks="Таблица зарегистрированных заказов ">
             <column name="id" type="bigint"
                     remarks="уникальный номер заказа">
-            <constraints primaryKey="true"
-                         primaryKeyName="order_pk"
-                         nullable="false"/>
+                <constraints primaryKey="true"
+                             primaryKeyName="order_pk"
+                             nullable="false"/>
             </column>
             <column name="publication_date" type="varchar(256)"
                     remarks="дата создания задаза">
@@ -42,7 +42,7 @@
                 <constraints nullable="false"/>
             </column>
         </createTable>
-        <comment>Задача по созданию </comment>
+        <comment>Задача по созданию orders </comment>
     </changeSet>
 
 </databaseChangeLog>

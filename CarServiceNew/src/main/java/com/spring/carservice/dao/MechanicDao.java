@@ -1,6 +1,5 @@
 package com.spring.carservice.dao;
 
-
 import com.spring.carservice.model.Mechanic;
 
 import java.util.List;

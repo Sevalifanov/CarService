@@ -1,26 +1,46 @@
 package com.spring.carservice.exeption;
 
+import java.time.Instant;
 import java.util.UUID;
 
+/**
+ * ResponseError - модель для отображения ошибки
+ */
 public class ResponseError {
+    /**
+     * id - уникальный номер события
+     */
+    private UUID id;
 
-        private UUID id;
-        private Long timestamp;
-        private String code;
-        private String message;
-        private String system;
+    /**
+     * timestamp- время события
+     */
+    private Instant timestamp;
 
+    /**
+     * code - код ошибки
+     */
+    private String code;
 
+    /**
+     * message -сообщение о ошибке
+     */
+    private String message;
 
-    public ResponseError(UUID id, Long timestamp, String code, String message, String system) {
+    /**
+     * system -место ошибки
+     */
+    private String system;
+
+    public ResponseError() {
+    }
+
+    public ResponseError(UUID id, Instant timestamp, String code, String message, String system) {
         this.id = id;
         this.timestamp = timestamp;
         this.code = code;
         this.message = message;
         this.system = system;
-    }
-
-    public ResponseError() {
     }
 
     public UUID getId() {
@@ -31,11 +51,11 @@ public class ResponseError {
         this.id = id;
     }
 
-    public Long getTimestamp() {
+    public Instant getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Long timestamp) {
+    public void setTimestamp(Instant timestamp) {
         this.timestamp = timestamp;
     }
 
