@@ -49,12 +49,12 @@ public class GarageExceptionHandler {
     }
 
     @ExceptionHandler(NullPointerException.class)
-    public ResponseEntity<ResponseError> nullPointerException(Exception exception) {
+    public ResponseEntity<ResponseError> nonExistingException(NonExistingException exception) {
         log.debug(exception.getLocalizedMessage(), exception);
         ResponseError error = new ResponseError(
                 UUID.randomUUID(),
                 Instant.now(),
-                "NullPointerException",
+                "NonExistingException",
                 "object does not exist or cannot be created ",
                 systemName
         );
