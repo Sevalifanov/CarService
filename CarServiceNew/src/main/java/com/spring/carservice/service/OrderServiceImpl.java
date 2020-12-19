@@ -4,6 +4,7 @@ import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dao.OrderDao;
 import com.spring.carservice.dto.OrderDto;
+import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.model.Order;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -33,13 +34,13 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderDto add(OrderDto orderDto) {
         if (carDao.getById(orderDto.getCarId()) == null) {
-            throw new RuntimeException("Car is not added to service. Firstly save car ");
+            throw new NonExistingException("Car is not added to service. Firstly save car ");
         }
         if (mechanicDao.getById(orderDto.getMechanicId()) == null) {
-            throw new RuntimeException("Mechanic is not added to service. Firstly save Mechanic ");
+            throw new NonExistingException("Mechanic is not added to service. Firstly save Mechanic ");
         }
         if (getOrderDtoByCarId(orderDto.getCarId()) != null) {
-            throw new RuntimeException("Car is already in service, you should add another car please, or use update");
+            throw new NonExistingException("Car is already in service, you should add another car please, or use update");
         }
         return toDto(orderDao.save(fromDto(orderDto)));
     }
