@@ -7,6 +7,7 @@ import com.spring.carservice.service.MechanicService;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Random;
@@ -20,16 +21,19 @@ public class MechanicServiceImpl implements MechanicService {
         this.mechanicDao = mechanicDao;
     }
 
+    @Transactional
     @Override
     public MechanicDto add(MechanicDto mechanicDto) {
         return toDto(mechanicDao.save(fromDto(mechanicDto)));
     }
 
+    @Transactional
     @Override
     public MechanicDto getById(Long Id) {
         return toDto(mechanicDao.getById(Id));
     }
 
+    @Transactional
     @Override
     public MechanicDto update(MechanicDto mechanicDto) {
         mechanicDao.remove(mechanicDao.getById(mechanicDto.getId()));
@@ -37,11 +41,13 @@ public class MechanicServiceImpl implements MechanicService {
 
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
         mechanicDao.remove(mechanicDao.getById(id));
     }
 
+    @Transactional
     @Override
     public MechanicDto getFreeMechanic() {
         List<Mechanic> mechanics = mechanicDao.getList();

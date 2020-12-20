@@ -10,6 +10,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,7 @@ public class OrderServiceImpl implements OrderService {
     @Value("${garage.diagnostics.price}")
     private Integer price;
 
+    @Transactional
     @Override
     public OrderDto add(OrderDto orderDto) {
         if (carDao.getById(orderDto.getCarId()) == null) {
@@ -45,6 +47,7 @@ public class OrderServiceImpl implements OrderService {
         return toDto(orderDao.save(fromDto(orderDto)));
     }
 
+
     private OrderDto getOrderDtoByCarId(Long id) {
         for (OrderDto orderDto : getOrders()) {
             if (id.equals(orderDto.getCarId())) {
@@ -54,11 +57,13 @@ public class OrderServiceImpl implements OrderService {
         return null;
     }
 
+    @Transactional
     @Override
     public OrderDto getById(Long id) {
         return toDto(orderDao.getById(id));
     }
 
+    @Transactional
     @Override
     public List<OrderDto> getOrders() {
         List<Order> orders = orderDao.getList();
