@@ -16,14 +16,12 @@ public class DataSourceConfig {
 
     @Bean
     public DataSource dataSource(Environment environment) {
-
         DriverManagerDataSource dataSource = new SingleConnectionDataSource();
         dataSource.setDriverClassName(environment.getRequiredProperty("datasource.driver"));
         dataSource.setUrl(environment.getRequiredProperty("datasource.url"));
         dataSource.setUsername(environment.getRequiredProperty("datasource.username"));
         dataSource.setPassword(environment.getRequiredProperty("datasource.password"));
         ((SingleConnectionDataSource) dataSource).setSuppressClose(true);
-
         return dataSource;
     }
 
@@ -42,6 +40,7 @@ public class DataSourceConfig {
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource);
         return simpleJdbcInsert;
     }
+
     @Bean
     @Primary
     public TransactionManager transactionManager(DataSource dataSource) {
