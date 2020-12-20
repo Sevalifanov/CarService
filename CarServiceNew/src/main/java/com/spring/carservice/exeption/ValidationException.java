@@ -1,4 +1,5 @@
 package com.spring.carservice.exeption;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,6 @@ public class ValidationException extends IllegalArgumentException {
     public ValidationException(Throwable cause) {
         super(cause);
     }
-    // ошибки валидации
 
     public ValidationException(String message, List<Error> errors) {
         super(message);

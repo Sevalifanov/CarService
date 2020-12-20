@@ -9,8 +9,6 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
-import java.util.Date;
-
 
 public class OrderRowMapper implements RowMapper<Order> {
     @Override

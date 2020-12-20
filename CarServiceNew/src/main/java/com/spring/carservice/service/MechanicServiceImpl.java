@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Random;
 
 @Service
-@PropertySource("classpath:application.properties")
 public class MechanicServiceImpl implements MechanicService {
     private MechanicDao mechanicDao;
 
