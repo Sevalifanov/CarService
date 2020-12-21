@@ -1,6 +1,7 @@
 package com.spring.carservice.controller;
 
 import com.spring.carservice.dto.CarDto;
+import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.service.CarService;
 import com.spring.carservice.validator.CarDtoValidator;
 import org.springframework.http.ResponseEntity;
@@ -61,7 +62,7 @@ public class CarController {
     @PutMapping(value = "/{id}")
     public CarDto updateCar(@RequestBody CarDto carDto, @PathVariable("id") Long id) {
         if(!carDto.getId().equals(id)){
-            throw new RuntimeException("You tried to update a car does not exist");
+            throw new NonExistingException("You tried to update a car did not exist");
         }
         carDtoValidator.validate(carDto);
         return carService.update(carDto);

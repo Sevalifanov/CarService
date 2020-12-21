@@ -4,6 +4,7 @@ import com.spring.carservice.dao.CarDao;
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.model.Car;
 import com.spring.carservice.service.CarService;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
