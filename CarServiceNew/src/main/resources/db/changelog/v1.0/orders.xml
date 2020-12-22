@@ -19,25 +19,25 @@
                              primaryKeyName="order_pk"
                              nullable="false"/>
             </column>
-            <column name="publication_date" type="varchar(256)"
+            <column name="publication_date" type="date"
                     remarks="дата создания задаза">
                 <constraints nullable="false"/>
             </column>
-            <column name="car_id" type="int"
+            <column name="car_id" type="bigint"
                     remarks="Идентификатор автомобиля">
                 <constraints foreignKeyName="car_fk"
                              referencedTableName="car"
                              referencedColumnNames="id"
                              nullable="false"/>
             </column>
-            <column name="mechanic_id" type="int"
+            <column name="mechanic_id" type="bigint"
                     remarks="Айди механика">
                 <constraints foreignKeyName="mechanic_fk"
                              referencedTableName="mechanic"
                              referencedColumnNames="id"
                              nullable="false"/>
             </column>
-            <column name="price" type="double precision"
+            <column name="price" type="numeric(12, 2)"
                     remarks="Цена услуги">
                 <constraints nullable="false"/>
             </column>
