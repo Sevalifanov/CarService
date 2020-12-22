@@ -19,7 +19,7 @@
                              primaryKeyName="order_pk"
                              nullable="false"/>
             </column>
-            <column name="publication_date" type="date"
+            <column name="publication_date" type="varchar(256)"
                     remarks="дата создания задаза">
                 <constraints nullable="false"/>
             </column>
