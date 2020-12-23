@@ -1,10 +1,8 @@
 package com.spring.carservice.service;
 
-import com.spring.carservice.dao.CarDao;
+import com.spring.carservice.repository.CarDao;
 import com.spring.carservice.dto.CarDto;
-import com.spring.carservice.model.Car;
-import com.spring.carservice.service.CarService;
-import org.springframework.scheduling.annotation.Async;
+import com.spring.carservice.domain.Car;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

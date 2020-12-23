@@ -1,5 +1,9 @@
-package com.spring.carservice.model;
+package com.spring.carservice.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -8,11 +12,15 @@ import java.util.Objects;
  * Order -заказ на исполнение. Как только зарегестрированный в сервисе автомобиль поступает на диагностику,
  * ему присваевается механик и цена диагностики
  */
+@Entity
+@Table(name = "orders")
 public class Order {
 
     /**
      * Id - айдентикационный номер заказа
      */
+    @Id
+    @Column
     private Long id;
 
     /**
@@ -23,11 +31,22 @@ public class Order {
     /**
      * car -автомобиль поступивший на обслуживание.
      */
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "organization_id")
+    @PrimaryKeyJoinColumn
     private Car car;
 
     /**
      * mechanic -механик осблуживающий Т.С.
      */
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private Mechanic mechanic;
 
     /**

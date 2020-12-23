@@ -1,11 +1,8 @@
 package com.spring.carservice.service;
 
-import com.spring.carservice.dao.CarDao;
-import com.spring.carservice.dao.MechanicDao;
-import com.spring.carservice.dao.OrderDao;
 import com.spring.carservice.dto.OrderDto;
 import com.spring.carservice.exeption.NonExistingException;
-import com.spring.carservice.model.Order;
+import com.spring.carservice.domain.Order;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

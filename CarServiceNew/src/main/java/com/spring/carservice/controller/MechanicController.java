@@ -54,7 +54,7 @@ public class MechanicController {
     }
 
     /**
-     * update mechanics model information
+     * update mechanics domain information
      *
      * @param mechanicDto
      * @param id
