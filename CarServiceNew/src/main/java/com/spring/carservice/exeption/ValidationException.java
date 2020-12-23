@@ -1,9 +1,16 @@
 package com.spring.carservice.exeption;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * ValidationException исключене которое срабатывает при ошибках в валидации.
+ */
 public class ValidationException extends IllegalArgumentException {
 
+    /**
+     * errors- список ошибок , собираемых при срабатывании исключения
+     */
     private List<Error> errors;
 
     public ValidationException() {

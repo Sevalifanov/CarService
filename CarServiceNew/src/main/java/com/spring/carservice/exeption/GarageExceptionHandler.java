@@ -20,8 +20,6 @@ public class GarageExceptionHandler {
 
     @Value("${system.name}")
     private String systemName;
-    @Value("${system.name.validation}")
-    private String systemNameValidation;
 
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ResponseError> validationException(ValidationException exception) {
@@ -31,7 +29,7 @@ public class GarageExceptionHandler {
                 Instant.now(),
                 "illegalArgumentException",
                 exception.getStrErrors().toString(),
-                systemNameValidation
+                systemName
         );
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
