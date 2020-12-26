@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public interface CarRepository extends JpaRepository<Car, UUID> {
+public interface CarRepository extends JpaRepository<Car, Long> {
 
 }

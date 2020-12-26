@@ -6,7 +6,6 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
-
  * OrderDto -воплощение этого шаблона dto для модели Order
  */
 public class OrderDto {

@@ -1,9 +1,6 @@
 package com.spring.carservice.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -31,21 +28,14 @@ public class Order {
     /**
      * car -автомобиль поступивший на обслуживание.
      */
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "organization_id")
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @PrimaryKeyJoinColumn
     private Car car;
 
     /**
      * mechanic -механик осблуживающий Т.С.
      */
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @PrimaryKeyJoinColumn
     private Mechanic mechanic;
 

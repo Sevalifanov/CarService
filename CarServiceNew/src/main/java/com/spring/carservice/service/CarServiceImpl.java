@@ -1,44 +1,44 @@
 package com.spring.carservice.service;
 
-import com.spring.carservice.repository.CarDao;
 import com.spring.carservice.dto.CarDto;
 import com.spring.carservice.domain.Car;
+import com.spring.carservice.repository.CarRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CarServiceImpl implements CarService {
 
-    private CarDao carDao;
+    private CarRepository carRepository;
 
-    public CarServiceImpl(CarDao carDao) {
-        this.carDao = carDao;
+    public CarServiceImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
     }
 
     @Transactional
     @Override
     public CarDto add(CarDto car) {
-        return toDto(carDao.save(fromDto(car)));
+        return toDto(carRepository.save(fromDto(car)));
     }
 
     @Transactional
     @Override
     public CarDto getById(Long Id) {
-        return toDto(carDao.getById(Id));
+        return toDto(carRepository.getOne(Id));
     }
 
     @Transactional
     @Override
     public void delete(Long id) {
-        Car car = carDao.getById(id);
-        carDao.remove(car);
+        Car car = carRepository.getOne(id);
+        carRepository.delete(car);
     }
 
     @Transactional
     @Override
     public CarDto update(CarDto carDto) {
-        carDao.remove(carDao.getById(carDto.getId()));
-        return toDto(carDao.save(fromDto(carDto)));
+        carRepository.deleteById(carDto.getId());
+        return toDto(carRepository.save(fromDto(carDto)));
     }
 
     private Car fromDto(CarDto carDto) {

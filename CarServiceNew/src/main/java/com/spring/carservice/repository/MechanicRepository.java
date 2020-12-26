@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.*;
 
 @Repository
-public interface MechanicRepository extends JpaRepository<Mechanic, UUID> {
+public interface MechanicRepository extends JpaRepository<Mechanic, Long> {
 
 }

@@ -69,5 +69,4 @@ public class MechanicController {
         return mechanicService.update(mechanicDto);
     }
 
-
 }
