@@ -6,6 +6,7 @@ import com.spring.carservice.model.Car;
 import com.spring.carservice.service.CarService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class CarServiceImpl implements CarService {
@@ -16,22 +17,26 @@ public class CarServiceImpl implements CarService {
         this.carDao = carDao;
     }
 
+    @Transactional
     @Override
     public CarDto add(CarDto car) {
         return toDto(carDao.save(fromDto(car)));
     }
 
+    @Transactional
     @Override
     public CarDto getById(Long Id) {
         return toDto(carDao.getById(Id));
     }
 
+    @Transactional
     @Override
-    public boolean delete(Long id) {
+    public void delete(Long id) {
         Car car = carDao.getById(id);
-        return carDao.remove(car);
+        carDao.remove(car);
     }
 
+    @Transactional
     @Override
     public CarDto update(CarDto carDto) {
         carDao.remove(carDao.getById(carDto.getId()));

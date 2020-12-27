@@ -44,7 +44,7 @@ public interface OrderService {
      * @param id - id заказа для удаления
      * @return -if success -return true, if fail -return false
      */
-    boolean delete(Long id);
+    void delete(Long id);
 
 
 }

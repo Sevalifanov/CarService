@@ -35,6 +35,8 @@ public class Order {
      */
     private BigDecimal price;
 
+    public Order(){};
+
     public Order(Long id, LocalDateTime publicationDate, Car car, Mechanic mechanic, BigDecimal price) {
         this.id = id;
         this.publicationDate = publicationDate;
