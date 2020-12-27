@@ -29,7 +29,7 @@ public class GarageExceptionHandler {
                 Instant.now(),
                 "illegalArgumentException",
                 exception.getStrErrors().toString(),
-                "validation"
+                systemName
         );
         return new ResponseEntity<>(error, new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
