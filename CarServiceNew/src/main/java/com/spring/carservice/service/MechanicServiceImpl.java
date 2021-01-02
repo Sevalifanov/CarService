@@ -32,7 +32,6 @@ public class MechanicServiceImpl implements MechanicService {
     @Transactional
     @Override
     public MechanicDto update(MechanicDto mechanicDto) {
-        mechanicRepository.deleteById(mechanicDto.getId());
         return toDto(mechanicRepository.save(fromDto(mechanicDto)));
 
     }

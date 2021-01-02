@@ -84,7 +84,6 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public OrderDto update(OrderDto orderDto) {
-        deleteById(orderDto.getId());
         return toDto(orderRepository.save(fromDto(orderDto)));
     }
 

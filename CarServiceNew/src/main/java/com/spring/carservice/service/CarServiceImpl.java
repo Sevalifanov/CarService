@@ -37,7 +37,6 @@ public class CarServiceImpl implements CarService {
     @Transactional
     @Override
     public CarDto update(CarDto carDto) {
-        carRepository.deleteById(carDto.getId());
         return toDto(carRepository.save(fromDto(carDto)));
     }
 
