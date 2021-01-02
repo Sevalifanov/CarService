@@ -1,6 +1,7 @@
 package com.spring.carservice.service;
 
 import com.spring.carservice.dto.OrderDto;
+import com.spring.carservice.dto.OrderSearchDto;
 import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.domain.Order;
 
@@ -10,6 +11,8 @@ import com.spring.carservice.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -81,10 +84,33 @@ public class OrderServiceImpl implements OrderService {
         orderRepository.deleteById(id);
     }
 
+    /**
+     * @param orderSearchDto принимаем модель для поиска
+     * @param pageable       параметры для страницы
+     * @return список заказов в формате страницы
+     */
+    @Override
+    public Page<OrderDto> getOrders(OrderSearchDto orderSearchDto, Pageable pageable) {
+        return orderRepository.findAll(getSpecification(mechanicSearchDto), pageable).map(mechanic -> toDto(mechanic));
+    }
+
+    private Specification<Mechanic> getSpecification(MechanicSearchDto mechanicSearchDto) {
+        return (root, query, builder) -> {
+            List<Predicate> predicates = new ArrayList<>();
+            if (mechanicSearchDto.getFirstName() != null) {
+                predicates.add(root.get("first_name").in(mechanicSearchDto.getFirstName()));
+            }
+
+            if (mechanicSearchDto.getLastName() != null) {
+                predicates.add(builder.lower(root.get("last_name")).in(mechanicSearchDto.getLastName()));
+            }
+            return builder.and(predicates.toArray(new Predicate[predicates.size()]));
+        };
+    }
+
     @Transactional
     @Override
     public OrderDto update(OrderDto orderDto) {
-        deleteById(orderDto.getId());
         return toDto(orderRepository.save(fromDto(orderDto)));
     }
 
