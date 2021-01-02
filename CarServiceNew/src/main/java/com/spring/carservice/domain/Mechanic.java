@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "mechanic")
-public class Mechanic {
+public class Mechanic extends CreateAtIdentified {
 
     /**
      * id -Внутренний идентификационный номер сотрудника, работающего в сервисе

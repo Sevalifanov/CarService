@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "car")
-public class Car {
+public class Car extends CreateAtIdentified{
 
     /**
      * id  -автомобиля - уникальный номер для любого т.с. на планете
