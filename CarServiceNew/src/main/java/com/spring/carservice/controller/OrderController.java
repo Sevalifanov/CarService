@@ -1,8 +1,11 @@
 package com.spring.carservice.controller;
 
 import com.spring.carservice.dto.OrderDto;
+import com.spring.carservice.dto.OrderSearchDto;
 import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.service.OrderService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -42,6 +45,19 @@ public class OrderController {
     public OrderDto getOrderById(@PathVariable("id") Long id) {
         return orderService.getById(id);
     }
+
+
+    /**
+     * Метод позволяет отдать по запросу список механиков в формате страницы
+     * @param orderSearchDto параметры для фильтрации
+     * @param pageable - страница со списком механиков подходящим по фильтру
+     * @return Список заказов в формате страницы
+     */
+    @GetMapping(value = "page")
+    public Page<OrderDto> getFilterUsers(@RequestBody OrderSearchDto orderSearchDto, Pageable pageable) {
+        return orderService.getOrders(orderSearchDto, pageable);
+    }
+
 
     /**
      * Метод удаляет заказ наряд по вину

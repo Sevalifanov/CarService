@@ -66,7 +66,7 @@ public class CarServiceImpl implements CarService {
             }
 
             if (carSearchDto.getModelName() != null) {
-                predicates.add(builder.lower(root.get("model_name")).in(carSearchDto.getModelName()));
+                predicates.add(builder.lower(root.get("modelName")).in(carSearchDto.getModelName()));
             }
             return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };

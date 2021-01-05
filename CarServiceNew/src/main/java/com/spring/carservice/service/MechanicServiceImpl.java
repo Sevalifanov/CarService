@@ -75,11 +75,11 @@ public class MechanicServiceImpl implements MechanicService {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
             if (mechanicSearchDto.getFirstName() != null) {
-                predicates.add(root.get("first_name").in(mechanicSearchDto.getFirstName()));
+                predicates.add(root.get("firstName").in(mechanicSearchDto.getFirstName()));
             }
 
             if (mechanicSearchDto.getLastName() != null) {
-                predicates.add(builder.lower(root.get("last_name")).in(mechanicSearchDto.getLastName()));
+                predicates.add(builder.lower(root.get("lastName")).in(mechanicSearchDto.getLastName()));
             }
             return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };

@@ -99,17 +99,17 @@ public class OrderServiceImpl implements OrderService {
     private Specification<Order> getSpecification(OrderSearchDto orderSearchDto) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
+            if (orderSearchDto.getPublicationDate() != null) {
+                predicates.add(root.get("publicationDate").in(orderSearchDto.getPublicationDate()));
+            }
             if (orderSearchDto.getCarId() != null) {
-                predicates.add(root.get("car_id").in(orderSearchDto.getCarId()));
+                predicates.add(root.get("car").in(orderSearchDto.getCarId()));
             }
             if (orderSearchDto.getMechanicId() != null) {
-                predicates.add(builder.lower(root.get("mechanic_id")).in(orderSearchDto.getMechanicId()));
-            }
-            if (orderSearchDto.getPublicationDate() != null) {
-                predicates.add(builder.lower(root.get("publication_date")).in(orderSearchDto.getPublicationDate()));
+                predicates.add(root.get("mechanic").in(orderSearchDto.getMechanicId()));
             }
             if (orderSearchDto.getPrice() != null) {
-                predicates.add(builder.lower(root.get("price")).in(orderSearchDto.getPrice()));
+                predicates.add(root.get("price").in(orderSearchDto.getPrice()));
             }
             return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };

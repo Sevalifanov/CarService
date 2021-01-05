@@ -1,9 +1,12 @@
 package com.spring.carservice.controller;
 
 import com.spring.carservice.dto.MechanicDto;
+import com.spring.carservice.dto.MechanicSearchDto;
 import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.service.MechanicService;
 import com.spring.carservice.validator.MechanicDtoValidator;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -41,6 +44,17 @@ public class MechanicController {
     @GetMapping(value = "/{id}")
     public MechanicDto getMechanicById(@PathVariable("id") Long id) {
         return mechanicService.getById(id);
+    }
+
+    /**
+     * Метод позволяет отдать по запросу список механиков в формате страницы
+     * @param mechanicSearchDto параметры для фильтрации
+     * @param pageable - страница со списком механиков подходящим по фильтру
+     * @return Список механиков в формате страницы
+     */
+    @GetMapping(value = "page")
+    public Page<MechanicDto> getFilterUsers(@RequestBody MechanicSearchDto mechanicSearchDto, Pageable pageable) {
+        return mechanicService.getMechanics(mechanicSearchDto, pageable);
     }
 
     /**
