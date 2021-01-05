@@ -13,9 +13,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -91,21 +93,27 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public Page<OrderDto> getOrders(OrderSearchDto orderSearchDto, Pageable pageable) {
-        return orderRepository.findAll(getSpecification(mechanicSearchDto), pageable).map(mechanic -> toDto(mechanic));
+        return orderRepository.findAll(getSpecification(orderSearchDto), pageable).map(order -> toDto(order));
     }
 
-    private Specification<Mechanic> getSpecification(MechanicSearchDto mechanicSearchDto) {
+    private Specification<Order> getSpecification(OrderSearchDto orderSearchDto) {
         return (root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();
-            if (mechanicSearchDto.getFirstName() != null) {
-                predicates.add(root.get("first_name").in(mechanicSearchDto.getFirstName()));
+            if (orderSearchDto.getCarId() != null) {
+                predicates.add(root.get("car_id").in(orderSearchDto.getCarId()));
             }
-
-            if (mechanicSearchDto.getLastName() != null) {
-                predicates.add(builder.lower(root.get("last_name")).in(mechanicSearchDto.getLastName()));
+            if (orderSearchDto.getMechanicId() != null) {
+                predicates.add(builder.lower(root.get("mechanic_id")).in(orderSearchDto.getMechanicId()));
+            }
+            if (orderSearchDto.getPublicationDate() != null) {
+                predicates.add(builder.lower(root.get("publication_date")).in(orderSearchDto.getPublicationDate()));
+            }
+            if (orderSearchDto.getPrice() != null) {
+                predicates.add(builder.lower(root.get("price")).in(orderSearchDto.getPrice()));
             }
             return builder.and(predicates.toArray(new Predicate[predicates.size()]));
         };
+
     }
 
     @Transactional
