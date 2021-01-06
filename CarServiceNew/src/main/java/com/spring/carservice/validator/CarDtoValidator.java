@@ -1,11 +1,15 @@
 package com.spring.carservice.validator;
 
 import com.spring.carservice.dto.CarDto;
+import com.spring.carservice.exeption.ValidationException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * CarDtoValidator - класс валидирующий входные значения для модели car
@@ -25,9 +29,21 @@ public class CarDtoValidator {
      * @param carDto
      */
     public void validate(CarDto carDto) {
-        if (carDto.getId() == null || carDto.getModelName() == null || carDto.getBrand() == null || carDto.getModelName().equals("") || carDto.getBrand().equals("")) {
-            logger.error("some field(s) is(are) incorrect");
-            throw new IllegalArgumentException(exceptionCarValidateMessage);
+        List<Error> errors = new ArrayList<>();
+        if (carDto.getId() == null) {
+            logger.error("try to enter incorrect carId ");
+            errors.add(new Error(exceptionCarValidateMessage + "incorrect carId"));
+        }
+        if (carDto.getBrand().equals("")) {
+            logger.error("try to enter incorrect Brand");
+            errors.add(new Error(exceptionCarValidateMessage + " incorrect Brand"));
+        }
+        if (carDto.getModelName().equals("")) {
+            logger.error("try to enter incorrect ModelName");
+            errors.add(new Error(exceptionCarValidateMessage + "incorrect ModelName"));
+        }
+        if (!errors.isEmpty()) {
+            throw new ValidationException(exceptionCarValidateMessage, errors);
         }
     }
 }

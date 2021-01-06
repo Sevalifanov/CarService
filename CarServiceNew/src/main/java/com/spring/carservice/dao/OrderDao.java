@@ -5,11 +5,11 @@ import com.spring.carservice.model.Order;
 import java.util.List;
 
 public interface OrderDao {
-    List<Order> getOrders();
+    List<Order> getList();
 
     Order save(Order order);
 
     Order getById(Long id);
 
-    boolean remove(Order order);
+    void remove(Order order);
 }

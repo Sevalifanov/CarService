@@ -28,7 +28,7 @@ public interface MechanicService {
      * @param id - id механик для удаления
      * @return -if success -return true, if fail -return false
      */
-    boolean delete(Long id);
+    void delete(Long id);
 
     /**
      * Метод добавляющий нового механика в наш persistence layer
