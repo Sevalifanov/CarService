@@ -37,7 +37,7 @@
                              referencedColumnNames="id"
                              nullable="false"/>
             </column>
-            <column name="price" type="numeric(10, 2)"
+            <column name="price" type="numeric(12, 2)"
                     remarks="Цена услуги">
                 <constraints nullable="false"/>
             </column>
