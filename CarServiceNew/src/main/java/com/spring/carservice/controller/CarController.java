@@ -1,9 +1,12 @@
 package com.spring.carservice.controller;
 
 import com.spring.carservice.dto.CarDto;
+import com.spring.carservice.dto.CarSearchDto;
 import com.spring.carservice.exeption.NonExistingException;
 import com.spring.carservice.service.CarService;
 import com.spring.carservice.validator.CarDtoValidator;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -41,6 +44,17 @@ public class CarController {
     @GetMapping("/{id}")
     public CarDto getCarById(@PathVariable("id") Long id) {
         return carService.getById(id);
+    }
+
+    /**
+     * Метод позволяет отдать по запросу список машин в формате страницы
+     * @param carSearchDto параметры для фильтрации
+     * @param pageable - страница со списком машин подходящим по фильтру
+     * @return Список машин в формате страницы
+     */
+    @GetMapping(value = "page")
+    public Page<CarDto> getFilterUsers(@RequestBody CarSearchDto carSearchDto, Pageable pageable) {
+        return carService.getCars(carSearchDto, pageable);
     }
 
     /**

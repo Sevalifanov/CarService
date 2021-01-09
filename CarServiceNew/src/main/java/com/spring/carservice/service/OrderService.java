@@ -1,8 +1,12 @@
 package com.spring.carservice.service;
 
 import com.spring.carservice.dto.OrderDto;
+import com.spring.carservice.dto.OrderSearchDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+
 /**
  * MechanicService - интерфейс содержащий методы для работы с уровнем бизнес логикой сущностей Mechanic и MechanicDto.
  */
@@ -46,5 +50,11 @@ public interface OrderService {
      */
     void deleteById(Long id);
 
+    /**
+     * @param orderSearchDto принимаем модель для поиска
+     * @param pageable       параметры для страницы
+     * @return список заказов в формате страницы
+     */
+    Page<OrderDto> getOrders(OrderSearchDto orderSearchDto, Pageable pageable);
 
 }

@@ -1,6 +1,10 @@
 package com.spring.carservice.service;
 
+import com.spring.carservice.dto.CarSearchDto;
 import com.spring.carservice.dto.MechanicDto;
+import com.spring.carservice.dto.MechanicSearchDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * MechanicService - класс для работы с уровнем бизнес логикой сущностей Mechanic и MechanicDto.
@@ -46,5 +50,12 @@ public interface MechanicService {
      * @return MechanicDto - механик для заказа
      */
     MechanicDto getFreeMechanic();
+
+    /**
+     * @param mechanicSearchDto принимаем модель для поиска
+     * @param pageable          параметры для страницы
+     * @return список механиков в формате страницы
+     */
+    Page<MechanicDto> getMechanics(MechanicSearchDto mechanicSearchDto, Pageable pageable);
 
 }

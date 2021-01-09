@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "orders")
-public class Order {
+public class Order extends CreateAtIdentified {
 
     /**
      * Id - айдентикационный номер заказа

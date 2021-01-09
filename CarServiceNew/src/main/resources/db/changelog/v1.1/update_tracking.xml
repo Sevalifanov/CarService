@@ -1,0 +1,46 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet id="1" author="Lifanov_Vsevolod">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="car" columnName="created_at"/>
+                <columnExists tableName="car" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="public" tableName="car">
+            <column name="created_at" type="timestamp with time zone"/>
+            <column name="updated_at" type="timestamp with time zone"/>
+        </addColumn>
+        <comment>Add update rows tracking - table car</comment>
+    </changeSet>
+    <changeSet id="2" author="Lifanov_Vsevolod">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="mechanic" columnName="created_at"/>
+                <columnExists tableName="mechanic" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="public" tableName="mechanic">
+            <column name="created_at" type="timestamp with time zone"/>
+            <column name="updated_at" type="timestamp with time zone"/>
+        </addColumn>
+        <comment>Add update rows tracking - table mechanic</comment>
+    </changeSet>
+    <changeSet id="3" author="Lifanov_Vsevolod">
+        <preConditions onFail="MARK_RAN">
+            <not>
+                <columnExists tableName="orders" columnName="created_at"/>
+                <columnExists tableName="orders" columnName="updated_at"/>
+            </not>
+        </preConditions>
+        <addColumn schemaName="public" tableName="orders">
+            <column name="created_at" type="timestamp with time zone"/>
+            <column name="updated_at" type="timestamp with time zone"/>
+        </addColumn>
+        <comment>Add update rows tracking - table orders</comment>
+    </changeSet>
+</databaseChangeLog>
