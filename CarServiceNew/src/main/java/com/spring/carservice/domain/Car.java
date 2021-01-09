@@ -1,16 +1,25 @@
-package com.spring.carservice.model;
+package com.spring.carservice.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 /**
  * Автомобиль- транспортное средство, используемое для перевозки людей или грузов.
  * Каждый автомобиль порой нуждается в диагностике, зачем и приезжает в наш сервис.
  */
+
+@Entity
+@Table(name = "car")
 public class Car {
 
     /**
      * id  -автомобиля - уникальный номер для любого т.с. на планете
      */
+    @Id
+    @Column
     private Long id;
 
     /**
@@ -19,7 +28,7 @@ public class Car {
     private String brand;
 
     /**
-     * model -модель автомобиля. Каждая марка автомобилей имеет несколько моделей предствленных на рынке.
+     * domain -модель автомобиля. Каждая марка автомобилей имеет несколько моделей предствленных на рынке.
      * например : Ford F-150, Ford Focus, Ford Explorer, etc.
      */
     private String modelName;

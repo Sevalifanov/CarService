@@ -1,11 +1,8 @@
 package com.spring.carservice.service;
 
-import com.spring.carservice.dao.MechanicDao;
 import com.spring.carservice.dto.MechanicDto;
-import com.spring.carservice.model.Mechanic;
-import com.spring.carservice.service.MechanicService;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.scheduling.annotation.Async;
+import com.spring.carservice.domain.Mechanic;
+import com.spring.carservice.repository.MechanicRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,42 +11,41 @@ import java.util.Random;
 
 @Service
 public class MechanicServiceImpl implements MechanicService {
-    private MechanicDao mechanicDao;
+    private MechanicRepository mechanicRepository;
 
-    public MechanicServiceImpl(MechanicDao mechanicDao) {
-        this.mechanicDao = mechanicDao;
+    public MechanicServiceImpl(MechanicRepository mechanicRepository) {
+        this.mechanicRepository = mechanicRepository;
     }
 
     @Transactional
     @Override
     public MechanicDto add(MechanicDto mechanicDto) {
-        return toDto(mechanicDao.save(fromDto(mechanicDto)));
+        return toDto(mechanicRepository.save(fromDto(mechanicDto)));
     }
 
     @Transactional
     @Override
     public MechanicDto getById(Long Id) {
-        return toDto(mechanicDao.getById(Id));
+        return toDto(mechanicRepository.getOne(Id));
     }
 
     @Transactional
     @Override
     public MechanicDto update(MechanicDto mechanicDto) {
-        mechanicDao.remove(mechanicDao.getById(mechanicDto.getId()));
-        return toDto(mechanicDao.save(fromDto(mechanicDto)));
+        return toDto(mechanicRepository.save(fromDto(mechanicDto)));
 
     }
 
     @Transactional
     @Override
     public void delete(Long id) {
-        mechanicDao.remove(mechanicDao.getById(id));
+        mechanicRepository.delete(mechanicRepository.getOne(id));
     }
 
     @Transactional
     @Override
     public MechanicDto getFreeMechanic() {
-        List<Mechanic> mechanics = mechanicDao.getList();
+        List<Mechanic> mechanics = mechanicRepository.findAll();
         Mechanic mechanic;
         if (mechanics.size() > 0) {
             mechanic = mechanics.get(new Random().nextInt(mechanics.size()));

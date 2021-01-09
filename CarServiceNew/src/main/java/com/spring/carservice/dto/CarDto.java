@@ -15,7 +15,7 @@ public class CarDto {
     private String brand;
 
     /**
-     * model -модель автомобиля. Каждая марка автомобилей имеет несколько моделей предствленных на рынке.
+     * domain -модель автомобиля. Каждая марка автомобилей имеет несколько моделей предствленных на рынке.
      * например : Ford F-150, Ford Focus, Ford Explorer, etc.
      */
     private String modelName;

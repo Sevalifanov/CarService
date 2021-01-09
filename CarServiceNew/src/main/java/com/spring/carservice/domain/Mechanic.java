@@ -1,15 +1,23 @@
-package com.spring.carservice.model;
+package com.spring.carservice.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 /**
  * mechanic -специалист по диагностике и ремонту автомобилей.
  */
+@Entity
+@Table(name = "mechanic")
 public class Mechanic {
 
     /**
      * id -Внутренний идентификационный номер сотрудника, работающего в сервисе
      */
+    @Id
+    @Column
     private Long id;
 
     /**

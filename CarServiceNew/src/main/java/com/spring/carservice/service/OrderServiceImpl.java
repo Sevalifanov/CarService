@@ -1,12 +1,12 @@
 package com.spring.carservice.service;
 
-import com.spring.carservice.dao.CarDao;
-import com.spring.carservice.dao.MechanicDao;
-import com.spring.carservice.dao.OrderDao;
 import com.spring.carservice.dto.OrderDto;
 import com.spring.carservice.exeption.NonExistingException;
-import com.spring.carservice.model.Order;
+import com.spring.carservice.domain.Order;
 
+import com.spring.carservice.repository.CarRepository;
+import com.spring.carservice.repository.MechanicRepository;
+import com.spring.carservice.repository.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,14 +20,14 @@ import java.util.List;
 public class OrderServiceImpl implements OrderService {
     private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class.getName());
 
-    private CarDao carDao;
-    private MechanicDao mechanicDao;
-    private OrderDao orderDao;
+    private CarRepository carRepository;
+    private MechanicRepository mechanicRepository;
+    private OrderRepository orderRepository;
 
-    public OrderServiceImpl(CarDao carDao, MechanicDao mechanicDao, OrderDao orderDao) {
-        this.carDao = carDao;
-        this.mechanicDao = mechanicDao;
-        this.orderDao = orderDao;
+    public OrderServiceImpl(CarRepository carRepository, MechanicRepository mechanicRepository, OrderRepository orderRepository) {
+        this.carRepository = carRepository;
+        this.mechanicRepository = mechanicRepository;
+        this.orderRepository = orderRepository;
     }
 
     @Value("${garage.diagnostics.price}")
@@ -36,16 +36,16 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public OrderDto add(OrderDto orderDto) {
-        if (carDao.getById(orderDto.getCarId()) == null) {
+        if (carRepository.findById(orderDto.getCarId()) == null) {
             throw new NonExistingException("Car is not added to service. Firstly save car ");
         }
-        if (mechanicDao.getById(orderDto.getMechanicId()) == null) {
+        if (mechanicRepository.findById(orderDto.getMechanicId()) == null) {
             throw new NonExistingException("Mechanic is not added to service. Firstly save Mechanic ");
         }
         if (getOrderDtoByCarId(orderDto.getCarId()) != null) {
             throw new NonExistingException("Car is already in service, you should add another car please, or use update");
         }
-        return toDto(orderDao.save(fromDto(orderDto)));
+        return toDto(orderRepository.save(fromDto(orderDto)));
     }
 
 
@@ -61,13 +61,13 @@ public class OrderServiceImpl implements OrderService {
     @Transactional
     @Override
     public OrderDto getById(Long id) {
-        return toDto(orderDao.getById(id));
+        return toDto(orderRepository.getOne(id));
     }
 
     @Transactional
     @Override
     public List<OrderDto> getOrders() {
-        List<Order> orders = orderDao.getList();
+        List<Order> orders = orderRepository.findAll();
         List<OrderDto> orderDtos = new ArrayList<>();
         for (Order order : orders) {
             orderDtos.add(toDto(order));
@@ -75,15 +75,16 @@ public class OrderServiceImpl implements OrderService {
         return orderDtos;
     }
 
+    @Transactional
     @Override
-    public void delete(Long id) {
-        orderDao.remove(orderDao.getById(id));
+    public void deleteById(Long id) {
+        orderRepository.deleteById(id);
     }
 
+    @Transactional
     @Override
     public OrderDto update(OrderDto orderDto) {
-        delete(orderDto.getId());
-        return toDto(orderDao.save(fromDto(orderDto)));
+        return toDto(orderRepository.save(fromDto(orderDto)));
     }
 
     /**
@@ -111,8 +112,8 @@ public class OrderServiceImpl implements OrderService {
         return new Order(
                 orderDto.getId(),
                 orderDto.getPublicationDate(),
-                carDao.getById(orderDto.getCarId()),
-                mechanicDao.getById(orderDto.getMechanicId()),
+                carRepository.getOne(orderDto.getCarId()),
+                mechanicRepository.getOne(orderDto.getMechanicId()),
                 orderDto.getPrice());
     }
 }

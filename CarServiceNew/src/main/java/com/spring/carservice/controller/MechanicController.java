@@ -54,7 +54,7 @@ public class MechanicController {
     }
 
     /**
-     * update mechanics model information
+     * update mechanics domain information
      *
      * @param mechanicDto
      * @param id
@@ -68,6 +68,5 @@ public class MechanicController {
         mechanicDtoValidator.validate(mechanicDto);
         return mechanicService.update(mechanicDto);
     }
-
 
 }
